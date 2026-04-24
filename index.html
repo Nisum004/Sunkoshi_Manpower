@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunkoshi Manpower Service (P.) Ltd. – Nepal's Trusted Recruitment Agency Since 1995</title>
+  <meta name="description" content="Sunkoshi Manpower Service Pvt. Ltd. – 30 years of trusted manpower recruitment from Nepal to Gulf, Malaysia, and Japan. License No. 69/052/53." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ─── CSS Variables ───────────────────────────────── */
+    :root {
+      --navy:   #2B3675;
+      --blue:   #3D5AA9;
+      --sky:    #5E8FD4;
+      --light:  #EEF3FB;
+      --pale:   #F7F9FE;
+      --accent: #C8A84B;
+      --white:  #ffffff;
+      --dark:   #111827;
+      --muted:  #6B7280;
+      --border: rgba(43,54,117,0.12);
+      --shadow: 0 20px 60px rgba(43,54,117,0.12);
+      --ff-head: 'Cormorant Garamond', Georgia, serif;
+      --ff-body: 'DM Sans', sans-serif;
+    }
+
+    /* ─── Reset ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--ff-body); color: var(--dark); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ─── Utilities ───────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); display: inline-block; margin-bottom: 12px; }
+    .section-title { font-family: var(--ff-head); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; color: var(--navy); margin-bottom: 16px; }
+    .section-title span { color: var(--blue); }
+    .section-sub { color: var(--muted); font-size: 1.05rem; max-width: 580px; line-height: 1.75; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 6px; font-family: var(--ff-body); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s; border: none; }
+    .btn-primary { background: var(--navy); color: var(--white); }
+    .btn-primary:hover { background: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(43,54,117,0.35); }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.6); }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); }
+    .fade-in { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── Navbar ──────────────────────────────────────── */
+    #navbar {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      padding: 20px 0;
+      transition: all 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      padding: 12px 0;
+      box-shadow: 0 4px 32px rgba(43,54,117,0.10);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo-icon {
+      width: 46px; height: 46px; border-radius: 10px;
+      background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-head); font-weight: 700; font-size: 1.3rem;
+      color: var(--navy); box-shadow: 0 2px 12px rgba(43,54,117,0.15);
+    }
+    .nav-logo-text { line-height: 1.15; }
+    .nav-logo-text .brand { font-family: var(--ff-head); font-size: 1.25rem; font-weight: 700; color: var(--white); letter-spacing: 0.03em; transition: color 0.4s; }
+    .nav-logo-text .sub { font-size: 0.68rem; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.4s; }
+    #navbar.scrolled .brand { color: var(--navy); }
+    #navbar.scrolled .sub { color: var(--muted); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: rgba(255,255,255,0.88); transition: color 0.3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background: var(--accent); transition: width 0.3s; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--white); }
+    #navbar.scrolled .nav-links a { color: var(--dark); }
+    #navbar.scrolled .nav-links a:hover { color: var(--blue); }
+    .nav-cta { padding: 10px 22px; border-radius: 6px; background: var(--accent); color: var(--dark) !important; font-weight: 600; transition: all 0.3s !important; }
+    .nav-cta:hover { background: #b8962f !important; }
+    .nav-cta::after { display: none !important; }
+    #nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    #nav-toggle span { display: block; width: 26px; height: 2px; background: var(--white); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
+    #navbar.scrolled #nav-toggle span { background: var(--navy); }
+
+    /* ─── Hero ────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #1a2240 0%, #2B3675 45%, #3D5AA9 100%);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.8) 1px, transparent 0);
+      background-size: 32px 32px;
+    }
+    .hero-image-overlay {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      opacity: 0.08;
+    }
+    .hero-geo {
+      position: absolute; right: -80px; top: -80px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(94,143,212,0.18) 0%, transparent 70%);
+    }
+    .hero-geo2 {
+      position: absolute; left: -120px; bottom: -120px;
+      width: 480px; height: 480px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,168,75,0.12) 0%, transparent 70%);
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      padding: 140px 0 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.20);
+      border-radius: 100px; padding: 6px 16px; margin-bottom: 24px;
+      font-size: 0.78rem; color: rgba(255,255,255,0.85); font-weight: 500;
+    }
+    .hero-badge .dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+    .hero-title { font-family: var(--ff-head); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: 24px; }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 36px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-trust { display: flex; align-items: center; gap: 16px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
+    .trust-item { text-align: center; }
+    .trust-item .num { font-family: var(--ff-head); font-size: 1.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .trust-item .lbl { font-size: 0.72rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+    .trust-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.2); }
+    .hero-right { position: relative; }
+    .hero-card {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px; padding: 32px;
+    }
+    .hero-card h3 { font-family: var(--ff-head); font-size: 1.4rem; font-weight: 600; color: var(--white); margin-bottom: 20px; }
+    .dest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .dest-item {
+      background: rgba(255,255,255,0.08); border-radius: 10px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 10px; transition: background 0.3s;
+    }
+    .dest-item:hover { background: rgba(255,255,255,0.14); }
+    .dest-flag { font-size: 1.5rem; }
+    .dest-info .country { font-weight: 600; font-size: 0.88rem; color: var(--white); }
+    .dest-info .jobs { font-size: 0.75rem; color: rgba(255,255,255,0.55); }
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.5); font-size: 0.72rem; letter-spacing: 0.1em; z-index: 2;
+      cursor: pointer; text-transform: uppercase;
+    }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent); animation: scroll-down 2s ease-in-out infinite; }
+    @keyframes scroll-down { 0%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1} 100%{opacity:0;transform:scaleY(1);transform-origin:bottom} }
+
+    /* ─── Stats Bar ───────────────────────────────────── */
+    #stats {
+      background: var(--navy);
+      padding: 56px 0;
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .stat-item { text-align: center; padding: 20px; position: relative; }
+    .stat-item:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: rgba(255,255,255,0.15); }
+    .stat-num { font-family: var(--ff-head); font-size: 3.2rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-plus { font-size: 2rem; vertical-align: middle; }
+    .stat-lbl { font-size: 0.82rem; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 8px; font-weight: 500; }
+
+    /* ─── About ───────────────────────────────────────── */
+    #about { padding: 100px 0; background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-image-wrap { position: relative; }
+    .about-img {
+      width: 100%; border-radius: 16px;
+      aspect-ratio: 4/3; object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+    .about-badge-float {
+      position: absolute; bottom: -24px; right: -24px;
+      background: var(--navy); color: var(--white);
+      border-radius: 14px; padding: 20px 24px; text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .about-badge-float .big { font-family: var(--ff-head); font-size: 2.6rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .about-badge-float .sm { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); margin-top: 4px; }
+    .about-tag-wrap { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+    .about-tag { background: var(--light); color: var(--navy); font-size: 0.8rem; font-weight: 600; padding: 6px 14px; border-radius: 100px; }
+    .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+    .highlight-card { background: var(--pale); border-radius: 12px; padding: 20px; border-left: 3px solid var(--blue); }
+    .highlight-card .icon { font-size: 1.4rem; margin-bottom: 8px; }
+    .highlight-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .highlight-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* ─── Services ────────────────────────────────────── */
+    #services { padding: 100px 0; background: var(--pale); }
+    .services-header { text-align: center; margin-bottom: 60px; }
+    .services-header .section-sub { margin: 0 auto; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .service-card {
+      background: var(--white); border-radius: 16px; padding: 36px 28px;
+      border: 1px solid var(--border); transition: all 0.4s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--sky));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: var(--light); display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin-bottom: 20px; transition: background 0.3s;
+    }
+    .service-card:hover .service-icon { background: var(--blue); }
+    .service-card:hover .service-icon { filter: brightness(1.3); }
+    .service-card h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+    .service-tags span { font-size: 0.72rem; background: var(--light); color: var(--blue); padding: 4px 10px; border-radius: 100px; font-weight: 600; }
+
+    /* ─── Process ─────────────────────────────────────── */
+    #process { padding: 100px 0; background: var(--white); }
+    .process-header { text-align: center; margin-bottom: 64px; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .process-steps::before {
+      content: ''; position: absolute; top: 64px; left: 12.5%; right: 12.5%;
+      height: 2px; border-top: 2.5px dashed var(--border); z-index: 0;
+    }
+    .process-step { text-align: center; position: relative; padding: 0 16px; }
+    .step-img-wrap {
+      width: 128px; height: 128px; border-radius: 50%; margin: 0 auto 24px;
+      overflow: hidden; border: 4px solid var(--white);
+      box-shadow: 0 8px 32px rgba(43,54,117,0.18); position: relative; z-index: 1;
+      transition: transform 0.3s;
+    }
+    .step-img-wrap:hover { transform: scale(1.06); }
+    .step-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .step-badge {
+      position: absolute; top: -8px; right: -8px;
+      width: 34px; height: 34px; background: var(--navy); color: var(--white);
+      border-radius: 50%; font-size: 0.78rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      border: 2.5px solid var(--white); z-index: 2;
+    }
+    .step-title { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .step-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── Countries ───────────────────────────────────── */
+    #countries { padding: 100px 0; background: var(--navy); }
+    .countries-header { text-align: center; margin-bottom: 60px; }
+    .countries-header .section-tag { color: var(--accent); }
+    .countries-header .section-title { color: var(--white); }
+    .countries-header .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto; }
+    .countries-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .country-card {
+      border-radius: 16px; overflow: hidden;
+      position: relative; aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .country-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .country-card:hover img { transform: scale(1.07); }
+    .country-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(18,25,60,0.9) 0%, rgba(18,25,60,0.3) 50%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 24px;
+    }
+    .country-flag { font-size: 2rem; margin-bottom: 8px; }
+    .country-name { font-family: var(--ff-head); font-size: 1.5rem; font-weight: 700; color: var(--white); }
+    .country-count { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+    .country-sectors { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+    .country-sectors span { font-size: 0.68rem; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); padding: 3px 10px; border-radius: 100px; }
+
+    /* ─── Categories ──────────────────────────────────── */
+    #categories { padding: 100px 0; background: var(--pale); }
+    .categories-header { margin-bottom: 56px; }
+    .cat-tabs { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
+    .cat-tab { padding: 10px 24px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s; border: 1.5px solid var(--border); background: var(--white); color: var(--muted); }
+    .cat-tab.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .cat-tab:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
+    .cat-panel { display: none; }
+    .cat-panel.active { display: block; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .cat-item {
+      background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px 16px; font-size: 0.85rem; color: var(--dark); font-weight: 500;
+      display: flex; align-items: center; gap: 8px; transition: all 0.3s;
+    }
+    .cat-item:hover { background: var(--navy); color: var(--white); border-color: var(--navy); transform: translateX(4px); }
+    .cat-item .dot { width: 6px; height: 6px; background: var(--sky); border-radius: 50%; flex-shrink: 0; }
+    .cat-item:hover .dot { background: var(--accent); }
+
+    /* ─── MD Message ──────────────────────────────────── */
+    #message { padding: 100px 0; background: var(--white); }
+    .message-grid { display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; }
+    .message-photo-wrap { position: sticky; top: 100px; text-align: center; }
+    .message-photo {
+      width: 220px; height: 260px; object-fit: cover; object-position: top;
+      border-radius: 16px; box-shadow: var(--shadow); margin: 0 auto 20px;
+    }
+    .message-name { font-family: var(--ff-head); font-size: 1.4rem; font-weight: 700; color: var(--navy); }
+    .message-role { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+    .message-sig { margin-top: 16px; font-family: var(--ff-head); font-size: 1.2rem; color: var(--blue); font-style: italic; }
+    blockquote { position: relative; }
+    blockquote::before {
+      content: '\201C'; position: absolute; top: -24px; left: -16px;
+      font-family: var(--ff-head); font-size: 8rem; color: var(--light);
+      line-height: 1; z-index: 0;
+    }
+    blockquote p { position: relative; z-index: 1; font-family: var(--ff-head); font-size: 1.35rem; color: var(--navy); line-height: 1.65; font-style: italic; margin-bottom: 24px; }
+    .message-body p { font-size: 0.95rem; color: var(--muted); line-height: 1.85; margin-bottom: 16px; }
+
+    /* ─── Clients ─────────────────────────────────────── */
+    #clients { padding: 80px 0; background: var(--pale); }
+    .clients-header { text-align: center; margin-bottom: 48px; }
+    .clients-track-wrap { overflow: hidden; position: relative; }
+    .clients-track-wrap::before,
+    .clients-track-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2;
+    }
+    .clients-track-wrap::before { left: 0; background: linear-gradient(to right, var(--pale), transparent); }
+    .clients-track-wrap::after { right: 0; background: linear-gradient(to left, var(--pale), transparent); }
+    .clients-track { display: flex; gap: 32px; animation: marquee 28s linear infinite; width: max-content; }
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .client-chip {
+      background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px 24px; white-space: nowrap; font-size: 0.82rem; font-weight: 600;
+      color: var(--navy); display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+      box-shadow: 0 2px 12px rgba(43,54,117,0.06);
+    }
+    .client-chip .flag { font-size: 1rem; }
+
+    /* ─── Registration CTA ────────────────────────────── */
+    #register { padding: 100px 0; background: var(--white); }
+    .register-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .register-left .section-sub { margin-bottom: 32px; }
+    .register-points { display: flex; flex-direction: column; gap: 14px; }
+    .register-point { display: flex; align-items: flex-start; gap: 14px; }
+    .register-point .icon { width: 36px; height: 36px; background: var(--light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .register-point h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .register-point p { font-size: 0.82rem; color: var(--muted); }
+    .reg-form { background: var(--pale); border-radius: 20px; padding: 40px; border: 1px solid var(--border); }
+    .reg-form h3 { font-family: var(--ff-head); font-size: 1.6rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .reg-form p { font-size: 0.85rem; color: var(--muted); margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--navy); }
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: var(--ff-body); font-size: 0.88rem; background: var(--white);
+      transition: border-color 0.3s; color: var(--dark); outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { width: 100%; padding: 15px; background: var(--navy); color: var(--white); border: none; border-radius: 8px; font-family: var(--ff-body); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .form-submit:hover { background: var(--blue); }
+    .form-note { font-size: 0.75rem; color: var(--muted); text-align: center; margin-top: 12px; }
+
+    /* ─── Contact ─────────────────────────────────────── */
+    #contact { padding: 80px 0; background: var(--navy); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+    .contact-block h4 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 16px; }
+    .contact-block p, .contact-block a { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.9; display: block; transition: color 0.3s; }
+    .contact-block a:hover { color: var(--accent); }
+    .contact-block .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); margin-top: 12px; margin-bottom: 2px; }
+
+    /* ─── Footer ──────────────────────────────────────── */
+    footer { background: #0d1220; padding: 36px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: rgba(255,255,255,0.7); }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.35); text-align: center; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.45); transition: color 0.3s; }
+    .footer-links a:hover { color: var(--accent); }
+    .social-links { display: flex; gap: 12px; }
+    .social-links a { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.55); font-size: 0.9rem; transition: all 0.3s; }
+    .social-links a:hover { background: var(--blue); color: var(--white); }
+
+    /* ─── Mobile ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-right { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2)::after, .stat-item:nth-child(4)::after { display: none; }
+      .about-grid, .message-grid, .register-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-badge-float { position: static; margin-top: 24px; display: inline-block; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+      .countries-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--navy); justify-content: center; align-items: center; gap: 32px; z-index: 999; }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.2rem; color: rgba(255,255,255,0.88) !important; }
+      #nav-toggle { display: block; z-index: 1001; }
+      .message-photo-wrap { position: static; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .about-highlights { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">S</div>
+      <div class="nav-logo-text">
+        <div class="brand">Sunkoshi Manpower</div>
+        <div class="sub">Est. 1995 · License 69/052/53</div>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#countries">Countries</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#register" class="nav-cta btn">Apply Now</a></li>
+    </ul>
+    <button id="nav-toggle" aria-label="Menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-image-overlay"></div>
+  <div class="hero-geo"></div>
+  <div class="hero-geo2"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Nepal's Trusted Manpower Recruitment Agency
+        </div>
+        <h1 class="hero-title">
+          Your Career<br/>Abroad Starts<br/><em>Right Here.</em>
+        </h1>
+        <p class="hero-desc">
+          Sunkoshi Manpower Service has been connecting skilled Nepali professionals with world-class employers in the Gulf, Malaysia, and Japan for over 30 years.
+        </p>
+        <div class="hero-actions">
+          <a href="#register" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Your CV</a>
+          <a href="#process" class="btn btn-outline"><i class="fas fa-play-circle"></i> Our Process</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item">
+            <div class="num" data-target="10000">0</div>
+            <div class="lbl">Workers Placed</div>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <div class="num">30</div>
+            <div class="lbl">Years Experience</div>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <div class="num">117</div>
+            <div class="lbl">Global Clients</div>
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-item">
+            <div class="num">3</div>
+            <div class="lbl">Country Offices</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card">
+          <h3>Where We Place Workers</h3>
+          <div class="dest-grid">
+            <div class="dest-item">
+              <span class="dest-flag">🇸🇦</span>
+              <div class="dest-info">
+                <div class="country">Saudi Arabia</div>
+                <div class="jobs">Construction · Hospitality</div>
+              </div>
+            </div>
+            <div class="dest-item">
+              <span class="dest-flag">🇦🇪</span>
+              <div class="dest-info">
+                <div class="country">UAE / Dubai</div>
+                <div class="jobs">Facilities · Security</div>
+              </div>
+            </div>
+            <div class="dest-item">
+              <span class="dest-flag">🇶🇦</span>
+              <div class="dest-info">
+                <div class="country">Qatar</div>
+                <div class="jobs">Engineering · Catering</div>
+              </div>
+            </div>
+            <div class="dest-item">
+              <span class="dest-flag">🇲🇾</span>
+              <div class="dest-info">
+                <div class="country">Malaysia</div>
+                <div class="jobs">Manufacturing · Retail</div>
+              </div>
+            </div>
+            <div class="dest-item">
+              <span class="dest-flag">🇯🇵</span>
+              <div class="dest-info">
+                <div class="country">Japan</div>
+                <div class="jobs">Technical · Factory</div>
+              </div>
+            </div>
+            <div class="dest-item">
+              <span class="dest-flag">🇰🇷</span>
+              <div class="dest-info">
+                <div class="country">South Korea</div>
+                <div class="jobs">Industrial · Trainee</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     STATS BAR
+══════════════════════════════════════════════════════ -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-in">
+        <div class="stat-num"><span class="count" data-target="10000">0</span><span class="stat-plus">+</span></div>
+        <div class="stat-lbl">Workers Successfully Deployed</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-num"><span class="count" data-target="30">0</span></div>
+        <div class="stat-lbl">Years of Industry Experience</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-num"><span class="count" data-target="117">0</span><span class="stat-plus">+</span></div>
+        <div class="stat-lbl">International Client Companies</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-num"><span class="count" data-target="6">0</span></div>
+        <div class="stat-lbl">Countries We Serve</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-wrap fade-in">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80&auto=format&fit=crop" alt="Sunkoshi Manpower team" class="about-img" />
+        <div class="about-badge-float">
+          <div class="big">30</div>
+          <div class="sm">Years of Trust</div>
+        </div>
+      </div>
+      <div class="about-content fade-in">
+        <span class="section-tag">Who We Are</span>
+        <h2 class="section-title">Valued as Gold,<br/><span>Clear as Water</span></h2>
+        <p class="section-sub" style="margin-bottom:20px;">
+          Named after the golden Sunkoshi River flowing from the Himalayan range of Mount Everest, our company reflects its namesake — valued as gold, clear and transparent as water, and enduring as a river in flow.
+        </p>
+        <p style="font-size:0.92rem;color:var(--muted);line-height:1.8;margin-bottom:24px;">
+          Since 1995, we have deployed thousands of skilled Nepali workers to Gulf countries, Malaysia, and Japan. Situated at the heart of Kathmandu — just 3.5 km from Tribhuvan International Airport — we offer fast and efficient processing. Our sister institutions, <strong>Sunkoshi Training Centre</strong> and <strong>Koshi Tours & Travel</strong>, complete our end-to-end service offering.
+        </p>
+        <div class="about-tag-wrap">
+          <span class="about-tag">Government Licensed</span>
+          <span class="about-tag">NAFEA Member</span>
+          <span class="about-tag">Japan Certified</span>
+          <span class="about-tag">CTEVT Affiliated Training</span>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-card">
+            <div class="icon">🏛️</div>
+            <h4>Ministry Licensed</h4>
+            <p>Fully licensed by Nepal's Ministry of Labour & Social Security. License No. 69/052/53.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="icon">🗾</div>
+            <h4>Japan Office</h4>
+            <p>Overseas office in Tokyo, Japan — License No. 13-310186 — coordinating deployments directly.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="icon">🎓</div>
+            <h4>Trade Test Center</h4>
+            <p>Affiliated CTEVT training and trade testing for all applicants before deployment.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="icon">🏆</div>
+            <h4>Top 5 in Nepal</h4>
+            <p>Ranked 5th among 854 manpower agencies in Nepal for South Korea trainee placements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-header fade-in">
+      <span class="section-tag">What We Offer</span>
+      <h2 class="section-title">End-to-End Recruitment <span>Solutions</span></h2>
+      <p class="section-sub">From sourcing to deployment, we manage every step of the international recruitment journey — so employers and workers both succeed.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">🔍</div>
+        <h3>Talent Sourcing</h3>
+        <p>National-level advertising and pre-screening to source the best-suited candidates matching your exact specifications — fast and efficiently.</p>
+        <div class="service-tags"><span>Job Ads</span><span>Pre-screening</span><span>Database</span></div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">📋</div>
+        <h3>Document Processing</h3>
+        <p>Full preparation and legalization of recruitment documents — Demand Letter, Power of Attorney, Employment Contract, Agency Agreement and more.</p>
+        <div class="service-tags"><span>Ministry Approval</span><span>Embassy</span><span>Legal</span></div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🎓</div>
+        <h3>Training & Trade Test</h3>
+        <p>Our CTEVT-affiliated training centre conducts skill training and official trade tests, ensuring all workers are deployment-ready.</p>
+        <div class="service-tags"><span>CTEVT</span><span>Trade Test</span><span>Orientation</span></div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">✈️</div>
+        <h3>Visa & Deployment</h3>
+        <p>We handle visa processing, final approval, travel arrangements via our associated Koshi Tours & Travel, and notify employers 48 hours before departure.</p>
+        <div class="service-tags"><span>Visa Process</span><span>Flight</span><span>On-time</span></div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🤝</div>
+        <h3>Employer Relations</h3>
+        <p>We serve as your on-ground partner in Nepal — managing interviews, resolving disputes, and maintaining open communication throughout recruitment.</p>
+        <div class="service-tags"><span>Interviews</span><span>Support</span><span>Dispute Resolution</span></div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🌐</div>
+        <h3>Overseas Coordination</h3>
+        <p>Our Japan office and overseas directors directly manage cross-border logistics, ensuring seamless coordination between Nepal and destination countries.</p>
+        <div class="service-tags"><span>Japan Office</span><span>Global Network</span><span>Staffing</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     PROCESS STEPS
+══════════════════════════════════════════════════════ -->
+<section id="process">
+  <div class="container">
+    <div class="process-header fade-in">
+      <span class="section-tag">How It Works</span>
+      <h2 class="section-title">Our Recruitment <span>Process</span></h2>
+      <p class="section-sub" style="margin:0 auto;">A transparent, step-by-step journey from application to deployment — built on 30 years of experience.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-in">
+        <div class="step-img-wrap">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80&auto=format&fit=crop" alt="Apply" />
+          <div class="step-badge">1</div>
+        </div>
+        <div class="step-title">Apply & Register</div>
+        <p class="step-desc">Submit your CV and details. Our team pre-screens all applicants against job requirements.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-img-wrap">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&q=80&auto=format&fit=crop" alt="Interview" />
+          <div class="step-badge">2</div>
+        </div>
+        <div class="step-title">Interview & Test</div>
+        <p class="step-desc">Shortlisted candidates attend final interviews with employer delegates and trade tests.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-img-wrap">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=300&q=80&auto=format&fit=crop" alt="Documents" />
+          <div class="step-badge">3</div>
+        </div>
+        <div class="step-title">Medical & Visa</div>
+        <p class="step-desc">Medical checkup, document legalization, ministry approvals, and visa processing by the employer.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-img-wrap">
+          <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=300&q=80&auto=format&fit=crop" alt="Deploy" />
+          <div class="step-badge">4</div>
+        </div>
+        <div class="step-title">Fly & Deploy</div>
+        <p class="step-desc">Orientation completed. Workers depart with full documentation. Employer notified 48 hours in advance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     COUNTRIES
+══════════════════════════════════════════════════════ -->
+<section id="countries">
+  <div class="container">
+    <div class="countries-header fade-in">
+      <span class="section-tag">Global Reach</span>
+      <h2 class="section-title">Where We <span style="color:var(--accent)">Send Workers</span></h2>
+      <p class="section-sub">From the Gulf to Southeast Asia and Japan — we have established networks and licensed offices that ensure smooth, legal, and safe placements.</p>
+    </div>
+    <div class="countries-grid">
+      <div class="country-card fade-in">
+        <img src="https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=800&q=80&auto=format&fit=crop" alt="Gulf Countries" />
+        <div class="country-overlay">
+          <div class="country-flag">🌍</div>
+          <div class="country-name">Gulf Countries</div>
+          <div class="country-count">Saudi Arabia · UAE · Qatar · Kuwait · Bahrain · Oman</div>
+          <div class="country-sectors">
+            <span>Construction</span><span>Hospitality</span><span>Security</span><span>Catering</span>
+          </div>
+        </div>
+      </div>
+      <div class="country-card fade-in">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&auto=format&fit=crop" alt="Malaysia" />
+        <div class="country-overlay">
+          <div class="country-flag">🇲🇾</div>
+          <div class="country-name">Malaysia</div>
+          <div class="country-count">Kuala Lumpur · Johor · Penang</div>
+          <div class="country-sectors">
+            <span>Manufacturing</span><span>Plantation</span><span>Food & Beverage</span>
+          </div>
+        </div>
+      </div>
+      <div class="country-card fade-in">
+        <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&q=80&auto=format&fit=crop" alt="Japan" />
+        <div class="country-overlay">
+          <div class="country-flag">🇯🇵</div>
+          <div class="country-name">Japan</div>
+          <div class="country-count">Tokyo · Aichi · Kyoto — License No. 13-310186</div>
+          <div class="country-sectors">
+            <span>Technical</span><span>Factory</span><span>Cooperative</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CATEGORIES
+══════════════════════════════════════════════════════ -->
+<section id="categories">
+  <div class="container">
+    <div class="categories-header fade-in">
+      <span class="section-tag">Manpower Categories</span>
+      <h2 class="section-title">We Supply <span>All Categories</span></h2>
+      <p class="section-sub">From unskilled labour to specialized engineers — we maintain a comprehensive talent database ready for timely deployment.</p>
+    </div>
+    <div class="cat-tabs fade-in">
+      <button class="cat-tab active" onclick="switchTab(this, 'skilled')">⚙️ Skilled</button>
+      <button class="cat-tab" onclick="switchTab(this, 'semiskilled')">🔧 Semi-Skilled</button>
+      <button class="cat-tab" onclick="switchTab(this, 'unskilled')">👷 Unskilled</button>
+    </div>
+    <div id="skilled" class="cat-panel active fade-in">
+      <div class="cat-grid">
+        <div class="cat-item"><span class="dot"></span>Construction Supervisor / Overseer</div>
+        <div class="cat-item"><span class="dot"></span>Welders (Gas / Electric)</div>
+        <div class="cat-item"><span class="dot"></span>Foreman (Electrical / Mechanical / Civil)</div>
+        <div class="cat-item"><span class="dot"></span>Earth Moving Equipment Operators</div>
+        <div class="cat-item"><span class="dot"></span>Electricians (LT & HT)</div>
+        <div class="cat-item"><span class="dot"></span>Machinists / Turrets / Toolmakers</div>
+        <div class="cat-item"><span class="dot"></span>Carpenters / Cabinet Makers</div>
+        <div class="cat-item"><span class="dot"></span>Steel Fixers</div>
+        <div class="cat-item"><span class="dot"></span>Mason / Tile Fixer / Plasterers</div>
+        <div class="cat-item"><span class="dot"></span>Plumbers / Pipe Fitters</div>
+        <div class="cat-item"><span class="dot"></span>Mechanics (AC / Heavy / Light)</div>
+        <div class="cat-item"><span class="dot"></span>Waiters / Cooks / Bankers</div>
+        <div class="cat-item"><span class="dot"></span>Lab Technicians / Medical Assistants</div>
+        <div class="cat-item"><span class="dot"></span>Garments / Textile / Jute Workers</div>
+        <div class="cat-item"><span class="dot"></span>Administration Personnel</div>
+        <div class="cat-item"><span class="dot"></span>Drivers (Heavy / Light)</div>
+        <div class="cat-item"><span class="dot"></span>Scaffolders</div>
+        <div class="cat-item"><span class="dot"></span>Security Personnel (Ex-Army / Police)</div>
+        <div class="cat-item"><span class="dot"></span>Male / Female Nurses</div>
+        <div class="cat-item"><span class="dot"></span>Pharmacists</div>
+        <div class="cat-item"><span class="dot"></span>Computer Operators</div>
+        <div class="cat-item"><span class="dot"></span>Front Office Personnel</div>
+      </div>
+    </div>
+    <div id="semiskilled" class="cat-panel fade-in">
+      <div class="cat-grid">
+        <div class="cat-item"><span class="dot"></span>Carpenter (Shuttering / Finishing)</div>
+        <div class="cat-item"><span class="dot"></span>Mason / Mason Helpers</div>
+        <div class="cat-item"><span class="dot"></span>Concrete Mixer Operators</div>
+        <div class="cat-item"><span class="dot"></span>Pump Operators / Helpers</div>
+        <div class="cat-item"><span class="dot"></span>Block Makers / Helpers</div>
+        <div class="cat-item"><span class="dot"></span>Kitchen Helpers / Assistant Cooks</div>
+        <div class="cat-item"><span class="dot"></span>Tailors / Tailors Helpers</div>
+        <div class="cat-item"><span class="dot"></span>Laundry / Washermen</div>
+        <div class="cat-item"><span class="dot"></span>Barbers</div>
+        <div class="cat-item"><span class="dot"></span>Shop Assistants</div>
+        <div class="cat-item"><span class="dot"></span>Gardeners</div>
+      </div>
+    </div>
+    <div id="unskilled" class="cat-panel fade-in">
+      <div class="cat-grid">
+        <div class="cat-item"><span class="dot"></span>General Labourers</div>
+        <div class="cat-item"><span class="dot"></span>Cleaner / Sweeper</div>
+        <div class="cat-item"><span class="dot"></span>Watchman / Guards</div>
+        <div class="cat-item"><span class="dot"></span>Agriculture Labour / Farmers</div>
+        <div class="cat-item"><span class="dot"></span>Industrial Labour</div>
+        <div class="cat-item"><span class="dot"></span>Peon / Office Boys</div>
+        <div class="cat-item"><span class="dot"></span>Airport Labour / Loaders</div>
+        <div class="cat-item"><span class="dot"></span>Carwash Labourers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     MD MESSAGE
+══════════════════════════════════════════════════════ -->
+<section id="message">
+  <div class="container">
+    <div class="message-grid">
+      <div class="message-photo-wrap fade-in">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80&auto=format&fit=crop" alt="Managing Director" class="message-photo" />
+        <div class="message-name">Dhruba Kumar Subedi</div>
+        <div class="message-role">Managing Director</div>
+        <div class="message-sig">— Sunkoshi Manpower</div>
+      </div>
+      <div class="message-body fade-in">
+        <span class="section-tag">From Our MD</span>
+        <h2 class="section-title" style="margin-bottom:28px;">A Message of <span>Trust & Commitment</span></h2>
+        <blockquote>
+          <p>"It gives me immense pleasure to introduce ourselves as a reputed workforce supplier to Gulf Countries, Malaysia, and Japan — delivering the right people at the right time, every time."</p>
+        </blockquote>
+        <p>We have spent 30 years building strategy and reputation in specialized recruitment services — finding the best talents, professionals, engineers, and managers our clients need. Sunkoshi has positioned itself to cater to the growing demands of talent acquisition worldwide, adapting to changing technologies and market trends.</p>
+        <p>Sunkoshi is a worldwide solution provider in recruitment, human resources, and staffing solutions. We can tailor-make strategies to fulfill the demands of our clients — whether large or small — according to the changing economy, technology, and market trends.</p>
+        <p>Our staffing and recruitment expertise takes the entire burden away from you. We are fully geared up and prepared to deliver the right workforce at the right time for your projects to any part of the world.</p>
+        <div style="margin-top:32px; display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="mailto:dhruba.sunkoshi@gmail.com" class="btn btn-primary" style="font-size:0.85rem;padding:12px 22px;"><i class="fas fa-envelope"></i> Contact Mr. Subedi</a>
+          <a href="tel:+9779851024840" class="btn" style="background:var(--light);color:var(--navy);font-size:0.85rem;padding:12px 22px;"><i class="fas fa-phone"></i> +977-9851024840</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CLIENTS TICKER
+══════════════════════════════════════════════════════ -->
+<section id="clients">
+  <div class="container">
+    <div class="clients-header fade-in">
+      <span class="section-tag">Trusted By</span>
+      <h2 class="section-title">Some of Our <span>Valued Clients</span></h2>
+    </div>
+  </div>
+  <div class="clients-track-wrap">
+    <div class="clients-track" id="clientTrack">
+      <div class="client-chip"><span class="flag">🇲🇾</span>Seal Polymer Industries Sdn. Bhd.</div>
+      <div class="client-chip"><span class="flag">🇲🇾</span>Hartalega Sdn. Bhd.</div>
+      <div class="client-chip"><span class="flag">🇶🇦</span>Al Muftah Co. (MEISIE)</div>
+      <div class="client-chip"><span class="flag">🇶🇦</span>MANCO Contracting</div>
+      <div class="client-chip"><span class="flag">🇦🇪</span>Group 4 Securities Emirates LLC</div>
+      <div class="client-chip"><span class="flag">🇦🇪</span>Al Basti & Muktha LLC</div>
+      <div class="client-chip"><span class="flag">🇸🇦</span>Al Nafjan Contracting Co.</div>
+      <div class="client-chip"><span class="flag">🇸🇦</span>Saudi Ozer Ltd. Co.</div>
+      <div class="client-chip"><span class="flag">🇲🇾</span>Hil Industries Berhad</div>
+      <div class="client-chip"><span class="flag">🇲🇾</span>Tatawa Industries (M) Sdn. Bhd.</div>
+      <div class="client-chip"><span class="flag">🇶🇦</span>Ramco Trading & Contracting</div>
+      <div class="client-chip"><span class="flag">🇦🇪</span>National Food Factory</div>
+      <div class="client-chip"><span class="flag">🇸🇦</span>Eastern Construction Co.</div>
+      <div class="client-chip"><span class="flag">🇯🇵</span>Chubu Kigyo Seizou Kyodo Kumiai</div>
+      <div class="client-chip"><span class="flag">🇲🇾</span>Nippon Wiper Blade (M.) Sdn. Bhd.</div>
+      <div class="client-chip"><span class="flag">🇦🇪</span>TDIC – Tourism Development Investment</div>
+      <!-- duplicate for seamless loop -->
+      <div class="client-chip"><span class="flag">🇲🇾</span>Seal Polymer Industries Sdn. Bhd.</div>
+      <div class="client-chip"><span class="flag">🇲🇾</span>Hartalega Sdn. Bhd.</div>
+      <div class="client-chip"><span class="flag">🇶🇦</span>Al Muftah Co. (MEISIE)</div>
+      <div class="client-chip"><span class="flag">🇶🇦</span>MANCO Contracting</div>
+      <div class="client-chip"><span class="flag">🇦🇪</span>Group 4 Securities Emirates LLC</div>
+      <div class="client-chip"><span class="flag">🇦🇪</span>Al Basti & Muktha LLC</div>
+      <div class="client-chip"><span class="flag">🇸🇦</span>Al Nafjan Contracting Co.</div>
+      <div class="client-chip"><span class="flag">🇸🇦</span>Saudi Ozer Ltd. Co.</div>
+      <div class="client-chip"><span class="flag">🇲🇾</span>Hil Industries Berhad</div>
+      <div class="client-chip"><span class="flag">🇲🇾</span>Tatawa Industries (M) Sdn. Bhd.</div>
+      <div class="client-chip"><span class="flag">🇶🇦</span>Ramco Trading & Contracting</div>
+      <div class="client-chip"><span class="flag">🇦🇪</span>National Food Factory</div>
+      <div class="client-chip"><span class="flag">🇸🇦</span>Eastern Construction Co.</div>
+      <div class="client-chip"><span class="flag">🇯🇵</span>Chubu Kigyo Seizou Kyodo Kumiai</div>
+      <div class="client-chip"><span class="flag">🇲🇾</span>Nippon Wiper Blade (M.) Sdn. Bhd.</div>
+      <div class="client-chip"><span class="flag">🇦🇪</span>TDIC – Tourism Development Investment</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     REGISTRATION / INQUIRY
+══════════════════════════════════════════════════════ -->
+<section id="register">
+  <div class="container">
+    <div class="register-grid">
+      <div class="register-left fade-in">
+        <span class="section-tag">Get Started</span>
+        <h2 class="section-title">Drop Us Your <span>Information</span></h2>
+        <p class="section-sub">Our representative will review your details and get back to you shortly. It's completely free and confidential.</p>
+        <div class="register-points">
+          <div class="register-point">
+            <div class="icon">🆓</div>
+            <div>
+              <h4>Completely Free</h4>
+              <p>No fees for initial registration. We only collect our authorized service charges as per law.</p>
+            </div>
+          </div>
+          <div class="register-point">
+            <div class="icon">⚡</div>
+            <div>
+              <h4>Fast Response</h4>
+              <p>Our team responds within 1–2 working days. Urgent requirements are prioritized.</p>
+            </div>
+          </div>
+          <div class="register-point">
+            <div class="icon">🔒</div>
+            <div>
+              <h4>Confidential & Safe</h4>
+              <p>Your personal information is handled with complete privacy and confidentiality.</p>
+            </div>
+          </div>
+          <div class="register-point">
+            <div class="icon">🌍</div>
+            <div>
+              <h4>Global Placements</h4>
+              <p>We actively recruit for positions in Gulf, Malaysia, Japan and more — year-round.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reg-form fade-in">
+        <h3>Send Us Your Details</h3>
+        <p>Fill in the form below and our recruitment team will contact you.</p>
+        <form action="https://formsubmit.co/info@sunkoshimanpower.com" method="POST">
+          <input type="hidden" name="_subject" value="New Inquiry – Sunkoshi Manpower Website" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://sunkoshimanpower.com/thank-you.html" />
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" name="name" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" name="phone" placeholder="+977 98XXXXXXXX" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Preferred Country *</label>
+              <select name="country" required>
+                <option value="">Select country...</option>
+                <option>Saudi Arabia</option>
+                <option>UAE / Dubai</option>
+                <option>Qatar</option>
+                <option>Kuwait</option>
+                <option>Bahrain</option>
+                <option>Malaysia</option>
+                <option>Japan</option>
+                <option>South Korea</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Job Category *</label>
+              <select name="category" required>
+                <option value="">Select category...</option>
+                <option>Skilled – Construction</option>
+                <option>Skilled – Engineering</option>
+                <option>Skilled – Hospitality</option>
+                <option>Skilled – Healthcare</option>
+                <option>Semi-Skilled</option>
+                <option>Unskilled Labour</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Message / Experience (Optional)</label>
+            <textarea name="message" placeholder="Briefly describe your work experience and availability..."></textarea>
+          </div>
+          <button type="submit" class="form-submit"><i class="fas fa-paper-plane"></i> Submit My Details</button>
+          <p class="form-note">By submitting, you agree to be contacted by Sunkoshi Manpower Service. No spam, ever.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;" class="fade-in">
+      <span class="section-tag" style="color:var(--accent)">Get In Touch</span>
+      <h2 class="section-title" style="color:var(--white)">Contact <span style="color:var(--accent)">Sunkoshi Manpower</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-block fade-in">
+        <h4>Nepal Head Office</h4>
+        <span class="label">Address</span>
+        <p>Kathmandu-30, Maitidevi<br/>Kathmandu, Nepal (P.O. Box 917)</p>
+        <span class="label">Phone</span>
+        <a href="tel:+97714522108">+977-1-4522108 / 4519193</a>
+        <span class="label">Email</span>
+        <a href="mailto:info@sunkoshimanpower.com">info@sunkoshimanpower.com</a>
+        <a href="mailto:sunkoshi.kathmandu@gmail.com">sunkoshi.kathmandu@gmail.com</a>
+        <span class="label">Website</span>
+        <a href="https://www.sunkoshimanpower.com">www.sunkoshimanpower.com</a>
+      </div>
+      <div class="contact-block fade-in">
+        <h4>Branch Offices – Nepal</h4>
+        <span class="label">Itahari Branch</span>
+        <p>Itahari-6, Sunsari<br/>Tel: +977-25-584961</p>
+        <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:2px;">Manager: Gajendra Kumar Yonghang</p>
+        <span class="label">Birtamod Branch</span>
+        <p>Birtamod, Jhapa, Nepal<br/>Tel: +977-23-543647</p>
+        <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:2px;">Manager: Sanchabir Ijam Limbu</p>
+      </div>
+      <div class="contact-block fade-in">
+        <h4>Japan Office – Tokyo</h4>
+        <span class="label">License No.</span>
+        <p>13-310186</p>
+        <span class="label">Tokyo</span>
+        <p>3-12-11, Matsushima, Edogawa-Ku<br/>Tokyo 1320031, Japan</p>
+        <a href="tel:+81358796758">03-5879-6758 / 03-3674-4567</a>
+        <span class="label">Email Japan</span>
+        <a href="mailto:sunkoshijapan@gmail.com">sunkoshijapan@gmail.com</a>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:info@sunkoshimanpower.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">Sunkoshi Manpower Service (P.) Ltd.</div>
+    <p class="footer-copy">© 2025 Sunkoshi Manpower Service Pvt. Ltd. · License No. 69/052/53 · All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="#register">Apply</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════ -->
+<script>
+  /* ── Navbar scroll ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ── Mobile menu ── */
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  /* ── Tab switcher ── */
+  function switchTab(el, panelId) {
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+  }
+
+  /* ── Intersection Observer: fade-in + counter ── */
+  const counted = new Set();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+
+        /* Counter animation */
+        entry.target.querySelectorAll('.count').forEach(el => {
+          if (counted.has(el)) return;
+          counted.add(el);
+          const target = +el.dataset.target;
+          const duration = 2000;
+          const start = performance.now();
+          const step = (now) => {
+            const prog = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - prog, 3);
+            el.textContent = Math.floor(eased * target).toLocaleString();
+            if (prog < 1) requestAnimationFrame(step);
+            else el.textContent = target.toLocaleString();
+          };
+          requestAnimationFrame(step);
+        });
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+  /* ── Hero counter (trust bar) ── */
+  const heroCounters = document.querySelectorAll('#hero .num[data-target]');
+  heroCounters.forEach(el => {
+    const target = +el.dataset.target;
+    const duration = 2500;
+    const start = performance.now();
+    const step = (now) => {
+      const prog = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - prog, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString();
+      if (prog < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString();
+    };
+    setTimeout(() => requestAnimationFrame(step), 800);
+  });
+</script>
+</body>
+</html>
