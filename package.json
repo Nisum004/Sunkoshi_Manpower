@@ -5,13 +5,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "flag-icons": "^7.5.0",
     "framer-motion": "^11.1.7",
     "lucide-react": "^1.11.0",
     "next": "14.2.3",
+    "nodemailer": "^8.0.6",
     "react": "^18",
     "react-countup": "^6.5.3",
     "react-dom": "^18",
