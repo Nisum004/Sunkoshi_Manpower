@@ -9,20 +9,8 @@ export default function ContactPage() {
   async function handleSubmit(e) {
     e.preventDefault()
     setLoading(true)
-    const fd = new FormData(e.target)
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: fd.get('name'),
-          phone: fd.get('phone'),
-          email: fd.get('email'),
-          subject: fd.get('subject'),
-          message: fd.get('message'),
-        }),
-      })
-      if (!res.ok) throw new Error()
+      await fetch(`https://formsubmit.co/${contact.formEmail}`, { method: 'POST', body: new FormData(e.target) })
       setStatus('success')
       e.target.reset()
     } catch { setStatus('error') }
@@ -112,6 +100,8 @@ export default function ContactPage() {
                 </div>
               ):(
                 <form onSubmit={handleSubmit}>
+                  <input type="hidden" name="_subject" value="Contact Form – Sunkoshi Manpower"/>
+                  <input type="hidden" name="_captcha" value="false"/>
                   <div className="form-row">
                     <div className="form-group"><label>Full Name *</label><input type="text" name="name" required placeholder="Your name"/></div>
                     <div className="form-group"><label>Phone *</label><input type="tel" name="phone" required placeholder="+977 98XXXXXXXX"/></div>
