@@ -17,7 +17,7 @@ export default function MDMessage() {
             <span className="section-tag">From Our MD</span>
             <h2 className="section-title" style={{marginBottom:28}}>A Message of <span>Trust & Commitment</span></h2>
             <blockquote style={{position:'relative',marginBottom:24}}>
-              <span style={{position:'absolute',top:-20,left:-10,fontFamily:'var(--ff-head)',fontSize:'7rem',color:'var(--light)',lineHeight:1,zIndex:0,pointerEvents:'none'}}>"</span>
+              <span style={{position:'absolute',top:-20,left:0,fontFamily:'var(--ff-head)',fontSize:'7rem',color:'var(--light)',lineHeight:1,zIndex:0,pointerEvents:'none'}}>"</span>
               <p style={{position:'relative',zIndex:1,fontFamily:'var(--ff-head)',fontSize:'1.3rem',color:'var(--navy)',lineHeight:1.65,fontStyle:'italic'}}>"{md.quote}"</p>
             </blockquote>
             {md.body.map((p,i)=><p key={i} style={{fontSize:'0.95rem',color:'var(--muted)',lineHeight:1.85,marginBottom:14}}>{p}</p>)}

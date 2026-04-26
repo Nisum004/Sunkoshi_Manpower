@@ -2,6 +2,9 @@ import './globals.css'
 import 'flag-icons/css/flag-icons.min.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import WhatsAppButton from '@/components/layout/WhatsAppButton'
+import TawkTo from '@/components/layout/TawkTo'
+import { integrations } from '@/data/company'
 
 const BASE = 'https://www.sunkoshimanpower.com'
 
@@ -49,27 +52,37 @@ const jsonLd = {
     addressCountry: 'NP',
   },
   geo: { '@type': 'GeoCoordinates', latitude: 27.7098, longitude: 85.3240 },
-  areaServed: ['Saudi Arabia', 'UAE', 'Qatar', 'Kuwait', 'Bahrain', 'Malaysia', 'Japan'],
+  areaServed: ['Saudi Arabia', 'UAE', 'Qatar', 'Kuwait', 'Bahrain', 'Malaysia', 'Japan', 'South Korea'],
   hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Manpower Categories', itemListElement: [
     { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Skilled Manpower Recruitment' } },
     { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Semi-Skilled Manpower Recruitment' } },
     { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Unskilled Manpower Recruitment' } },
   ]},
-  sameAs: [`${BASE}`],
 }
 
 export default function RootLayout({ children }) {
+  const { ga4, enabled: gaEnabled } = integrations.analytics
   return (
     <html lang="en">
       <head>
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+          crossOrigin="anonymous" referrerPolicy="no-referrer" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        {gaEnabled && ga4 && <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`} />
+          <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${ga4}');` }} />
+        </>}
       </head>
       <body>
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <WhatsAppButton />
+        <TawkTo />
       </body>
     </html>
   )

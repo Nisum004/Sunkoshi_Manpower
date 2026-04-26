@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { formOptions, contact } from '@/data/company'
+import { formOptions, contact } from '@/data/company' // contact used in error message
 import { jobs } from '@/data/jobs'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
@@ -26,9 +26,10 @@ function JobSeekerForm() {
     e.preventDefault()
     setLoading(true)
     try {
-      await fetch(`https://formsubmit.co/${contact.formEmail}`, { method: 'POST', body: new FormData(e.target) })
-      setStatus('success')
-      e.target.reset()
+      const res  = await fetch('/api/apply.php', { method: 'POST', body: new FormData(e.target) })
+      const data = await res.json()
+      if (data.success) { setStatus('success'); e.target.reset() }
+      else setStatus('error')
     } catch { setStatus('error') }
     setLoading(false)
   }
@@ -67,9 +68,6 @@ function JobSeekerForm() {
           </div>
         ):(
           <form onSubmit={handleSubmit}>
-            <input type="hidden" name="_subject" value="Job Seeker Registration – Sunkoshi Manpower"/>
-            <input type="hidden" name="_captcha" value="false"/>
-            <input type="hidden" name="form_type" value="Job Seeker Registration"/>
             <div style={{background:'var(--pale)',borderRadius:10,padding:'14px 18px',marginBottom:18,fontSize:'0.8rem',fontWeight:600,color:'var(--navy)'}}>Personal Information</div>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:14}}>
               <div className="form-group"><label>Full Name *</label><input type="text" name="full_name" required placeholder="As on passport"/></div>

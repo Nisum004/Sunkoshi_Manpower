@@ -18,8 +18,8 @@
 
 /* ─── Reset ─────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html  { scroll-behavior: smooth; }
-body  { font-family: var(--ff-body); color: var(--dark); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+html  { scroll-behavior: smooth; overflow-x: hidden; }
+body  { font-family: var(--ff-body); color: var(--dark); background: var(--white); line-height: 1.6; overflow-x: hidden; max-width: 100%; }
 img   { max-width: 100%; display: block; }
 a     { text-decoration: none; color: inherit; }
 ul    { list-style: none; }
@@ -74,6 +74,7 @@ ul    { list-style: none; }
 /* ─── Hero ───────────────────────────────────────── */
 .hero-grid      { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .hero-card-wrap { display: block; }
+.hero-stats     { display: grid; grid-template-columns: repeat(4,1fr); }
 
 /* ─── Stats ──────────────────────────────────────── */
 .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); }
@@ -136,6 +137,7 @@ ul    { list-style: none; }
   .hamburger       { display: flex !important; }
   .hero-grid       { grid-template-columns: 1fr !important; }
   .hero-card-wrap  { display: none !important; }
+  .hero-stats      { grid-template-columns: 1fr 1fr !important; row-gap: 20px !important; }
   .stats-grid      { grid-template-columns: 1fr 1fr !important; }
   .about-grid      { grid-template-columns: 1fr !important; gap: 40px !important; }
   .services-grid   { grid-template-columns: 1fr 1fr !important; }

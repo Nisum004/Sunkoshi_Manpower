@@ -19,9 +19,10 @@ export default function EmployersPage() {
     e.preventDefault()
     setLoading(true)
     try {
-      await fetch(`https://formsubmit.co/${contact.formEmail}`, { method:'POST', body: new FormData(e.target) })
-      setStatus('success')
-      e.target.reset()
+      const res  = await fetch('/api/employer.php', { method: 'POST', body: new FormData(e.target) })
+      const data = await res.json()
+      if (data.success) { setStatus('success'); e.target.reset() }
+      else setStatus('error')
     } catch { setStatus('error') }
     setLoading(false)
   }
@@ -65,9 +66,6 @@ export default function EmployersPage() {
                 </div>
               ):(
                 <form onSubmit={handleSubmit}>
-                  <input type="hidden" name="_subject" value="Employer Requirement – Sunkoshi Manpower"/>
-                  <input type="hidden" name="_captcha" value="false"/>
-                  <input type="hidden" name="form_type" value="Employer Requirement"/>
 
                   <div style={{background:'var(--pale)',borderRadius:10,padding:'16px 20px',marginBottom:20,fontSize:'0.82rem',color:'var(--muted)'}}>
                     <strong style={{color:'var(--navy)'}}>Company Information</strong>

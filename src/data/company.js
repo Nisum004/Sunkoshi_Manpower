@@ -138,6 +138,32 @@ export const contact = {
   formEmail: 'info@sunkoshimanpower.com',
 }
 
+/**
+ * ── SOCIAL & INTEGRATIONS ──────────────────────────────
+ * whatsapp: phone number with country code, no + or spaces
+ * tawkto: sign up free at tawk.to, get your Property ID & Widget ID
+ * analytics.ga4: sign up at analytics.google.com, get your G-XXXXX ID
+ * Set enabled: true once you have the real IDs
+ */
+export const social = {
+  whatsapp: '9779851024840',        // MD WhatsApp — replace if needed
+  facebook:  '',                    // e.g. https://facebook.com/sunkoshimanpower
+  instagram: '',
+  youtube:   '',
+}
+
+export const integrations = {
+  tawkto: {
+    propertyId: '',                 // Paste your Tawk.to Property ID here
+    widgetId:   '',                 // Paste your Tawk.to Widget ID here
+    enabled:    false,              // Change to true after setting up Tawk.to
+  },
+  analytics: {
+    ga4:     '',                    // Paste your GA4 Measurement ID (G-XXXXXXX) here
+    enabled: false,                 // Change to true after setting up GA4
+  },
+}
+
 export const formOptions = {
   countries:  ['Saudi Arabia', 'UAE / Dubai', 'Qatar', 'Kuwait', 'Bahrain', 'Malaysia', 'Japan', 'South Korea'],
   categories: ['Skilled – Construction', 'Skilled – Engineering', 'Skilled – Hospitality', 'Skilled – Healthcare', 'Semi-Skilled', 'Unskilled Labour', 'Other'],

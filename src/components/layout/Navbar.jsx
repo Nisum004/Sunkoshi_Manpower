@@ -2,20 +2,23 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Building2, HardHat } from 'lucide-react'
+import { Building2, HardHat, HelpCircle, ImageIcon } from 'lucide-react'
 
 const navLinks = [
-  { label: 'Home',      href: '/'          },
-  { label: 'About',     href: '/about'      },
-  { label: 'Jobs',      href: '/jobs'       },
-  { label: 'Countries', href: '/#countries' },
+  { label: 'Home',         href: '/'             },
+  { label: 'About',        href: '/about'         },
+  { label: 'Destinations', href: '/destinations'  },
+  { label: 'Jobs',         href: '/jobs'          },
   {
     label: 'Resources',
     dropdown: [
-      { label: 'For Employers',   href: '/resources/employers',   Icon: Building2, desc: 'Post requirements & hire Nepali workers' },
-      { label: 'For Job Seekers', href: '/resources/job-seekers', Icon: HardHat,   desc: 'Register your CV & apply for jobs abroad' },
+      { label: 'For Employers',   href: '/resources/employers',   Icon: Building2, desc: 'Post requirements & hire Nepali workers'    },
+      { label: 'For Job Seekers', href: '/resources/job-seekers', Icon: HardHat,   desc: 'Register your CV & apply for jobs abroad'   },
+      { label: 'FAQ',             href: '/faq',                   Icon: HelpCircle,desc: 'Answers to common questions about working abroad' },
+      { label: 'Photo Gallery',   href: '/gallery',               Icon: ImageIcon, desc: 'Sendoff events, training, and milestones'   },
     ],
   },
+  { label: 'News',    href: '/news'    },
   { label: 'Contact', href: '/contact' },
 ]
 
