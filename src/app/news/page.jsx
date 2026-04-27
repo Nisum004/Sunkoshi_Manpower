@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Calendar, ArrowRight } from 'lucide-react'
+import { FeaturedNewsSkeleton, NewsCardSkeleton } from '@/components/ui/Skeleton'
 
 const categoryColors = {
   Jobs:         { bg: '#DCFCE7', color: '#166534' },
@@ -29,10 +30,16 @@ export default function NewsPage() {
         <div className="container">
           <div className="breadcrumb"><a href="/">Home</a><span>/</span><span>News</span></div>
           <h1>News & <em>Announcements</em></h1>
+          <p>Stay updated with the latest job openings, notices, and company news.</p>
         </div>
       </div>
-      <section style={{padding:'80px 0',background:'var(--pale)',textAlign:'center'}}>
-        <i className="fas fa-spinner fa-spin" style={{fontSize:'2rem',color:'var(--muted)'}}/>
+      <section style={{padding:'80px 0',background:'var(--pale)'}}>
+        <div className="container">
+          <FeaturedNewsSkeleton/>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:24}} className="news-grid">
+            {Array.from({length:3}).map((_,i)=><NewsCardSkeleton key={i}/>)}
+          </div>
+        </div>
       </section>
     </>
   )

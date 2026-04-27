@@ -6,7 +6,9 @@ export default function TawkTo() {
   useEffect(() => {
     const { enabled, propertyId, widgetId } = integrations.tawkto
     if (!enabled || !propertyId || !widgetId) return
-    var Tawk_API = Tawk_API || {}
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return
+    window.Tawk_API = window.Tawk_API || {}
+    window.Tawk_LoadStart = new Date()
     var s1 = document.createElement('script')
     s1.async = true
     s1.src = `https://embed.tawk.to/${propertyId}/${widgetId}`

@@ -1,24 +1,27 @@
 'use client'
 import { highlights, md } from '@/data/company'
 import { Landmark, MapPin, GraduationCap, Trophy } from 'lucide-react'
+import Reveal from '@/components/ui/Reveal'
 
 const iconMap = { Landmark, MapPin, GraduationCap, Trophy }
 
 export function HighlightsGrid() {
   return (
     <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:20}} className="highlights-grid">
-      {highlights.map(h=>{
+      {highlights.map((h, i) => {
         const Icon = iconMap[h.icon]
         return (
-          <div key={h.title} style={{background:'var(--white)',borderRadius:14,padding:28,textAlign:'center',border:'1px solid var(--border)',transition:'all 0.3s'}}
-            onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-6px)';e.currentTarget.style.boxShadow='var(--shadow)'}}
-            onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.boxShadow='none'}}>
-            <div style={{marginBottom:16,display:'flex',justifyContent:'center',color:'var(--blue)'}}>
-              {Icon && <Icon size={36}/>}
+          <Reveal key={h.title} delay={i * 0.1}>
+            <div style={{background:'var(--white)',borderRadius:14,padding:28,textAlign:'center',border:'1px solid var(--border)',transition:'all 0.3s',height:'100%'}}
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-6px)';e.currentTarget.style.boxShadow='var(--shadow)'}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.boxShadow='none'}}>
+              <div style={{marginBottom:16,display:'flex',justifyContent:'center',color:'var(--blue)'}}>
+                {Icon && <Icon size={36}/>}
+              </div>
+              <h3 style={{fontFamily:'var(--ff-head)',fontSize:'1.1rem',fontWeight:700,color:'var(--navy)',marginBottom:10}}>{h.title}</h3>
+              <p style={{fontSize:'0.82rem',color:'var(--muted)',lineHeight:1.6}}>{h.text}</p>
             </div>
-            <h3 style={{fontFamily:'var(--ff-head)',fontSize:'1.1rem',fontWeight:700,color:'var(--navy)',marginBottom:10}}>{h.title}</h3>
-            <p style={{fontSize:'0.82rem',color:'var(--muted)',lineHeight:1.6}}>{h.text}</p>
-          </div>
+          </Reveal>
         )
       })}
     </div>

@@ -12,7 +12,7 @@ export default function WhatsAppButton() {
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
         style={{
-          position: 'fixed', bottom: 28, right: 28, zIndex: 9000,
+          position: 'fixed', bottom: 100, right: 28, zIndex: 9000,
           width: 58, height: 58, borderRadius: '50%',
           background: '#25D366', color: '#fff',
           display: 'flex', alignItems: 'center', justifyContent: 'center',

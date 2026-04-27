@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import JobCard from '@/components/jobs/JobCard'
+import { JobCardSkeleton } from '@/components/ui/Skeleton'
 import { Search } from 'lucide-react'
 
 export default function JobsPage() {
@@ -58,9 +59,8 @@ export default function JobsPage() {
           )}
 
           {loading ? (
-            <div style={{textAlign:'center',padding:'80px 24px',color:'var(--muted)'}}>
-              <div style={{marginBottom:12}}><i className="fas fa-spinner fa-spin" style={{fontSize:'2rem'}}/></div>
-              <p>Loading vacancies…</p>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(340px,1fr))',gap:20}}>
+              {Array.from({length:6}).map((_,i)=><JobCardSkeleton key={i}/>)}
             </div>
           ) : filtered.length === 0 ? (
             <div style={{textAlign:'center',padding:'80px 24px',color:'var(--muted)'}}>

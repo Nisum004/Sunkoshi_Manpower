@@ -1,6 +1,7 @@
 import { company, md } from '@/data/company'
 import Link from 'next/link'
 import { HighlightsGrid, MDPhoto } from '@/components/about/AboutInteractive'
+import CertificatesGallery from '@/components/about/CertificatesGallery'
 
 export const metadata = { title: 'About Us – Sunkoshi Manpower Service' }
 
@@ -48,6 +49,18 @@ export default function AboutPage() {
             <h2 className="section-title">What Sets Us <span>Apart</span></h2>
           </div>
           <HighlightsGrid />
+        </div>
+      </section>
+
+      {/* Credentials */}
+      <section style={{padding:'80px 0',background:'var(--white)'}}>
+        <div className="container">
+          <div style={{textAlign:'center',marginBottom:48}}>
+            <span className="section-tag">Licenses & Certifications</span>
+            <h2 className="section-title">Our <span>Credentials</span></h2>
+            <p style={{color:'var(--muted)',maxWidth:560,margin:'0 auto',lineHeight:1.8}}>Fully licensed by the Department of Foreign Employment, Nepal. Every certificate below is an official government-issued document.</p>
+          </div>
+          <CertificatesGallery />
         </div>
       </section>
 

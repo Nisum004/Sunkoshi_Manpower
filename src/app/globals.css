@@ -114,6 +114,19 @@ ul    { list-style: none; }
 .emp-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: start; }
 .js-grid  { display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: start; }
 
+/* ─── Skeleton shimmer ───────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--light) 25%, #dde5f7 50%, var(--light) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 6px;
+  display: block;
+}
+
 /* ─── Ticker animation ───────────────────────────── */
 @keyframes ticker {
   0%   { transform: translateX(0); }

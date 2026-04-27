@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { Calendar, Tag, ArrowLeft } from 'lucide-react'
+import { NewsDetailSkeleton } from '@/components/ui/Skeleton'
 
 const categoryColors = {
   Jobs:         { bg: '#DCFCE7', color: '#166534' },
@@ -64,11 +65,7 @@ export default function NewsDetailClient({ slug: slugProp }) {
       .catch(() => { setNotFound(true); setLoading(false) })
   }, [slug])
 
-  if (loading) return (
-    <section style={{padding:'120px 0',textAlign:'center'}}>
-      <i className="fas fa-spinner fa-spin" style={{fontSize:'2rem',color:'var(--muted)'}}/>
-    </section>
-  )
+  if (loading) return <NewsDetailSkeleton/>
 
   if (notFound || !article) return (
     <section style={{padding:'120px 0',textAlign:'center'}}>

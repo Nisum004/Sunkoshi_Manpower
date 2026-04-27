@@ -13,7 +13,7 @@ export default function StatsBar() {
             <div key={i} style={{textAlign:'center',padding:20,position:'relative'}}>
               {i<stats.length-1&&<div style={{position:'absolute',right:0,top:'20%',height:'60%',width:1,background:'rgba(255,255,255,0.15)'}}/>}
               <div style={{fontFamily:'var(--ff-head)',fontSize:'3.2rem',fontWeight:700,color:'var(--accent)',lineHeight:1}}>
-                {inView?<CountUp end={s.number} duration={2} separator="," />:'0'}{s.suffix}
+                {inView?<CountUp end={s.number} duration={3.5} separator="," />:'0'}{s.suffix}
               </div>
               <div style={{fontSize:'0.82rem',color:'rgba(255,255,255,0.6)',textTransform:'uppercase',letterSpacing:'0.12em',marginTop:8,fontWeight:500}}>{s.label}</div>
             </div>

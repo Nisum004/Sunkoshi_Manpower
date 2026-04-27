@@ -41,6 +41,18 @@ Options -Indexes
     ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
+# Shell routing for admin-added jobs and news (no static file → serve shell)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^jobs/([^/]+)/?$ /jobs/shell/index.html [L]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^news/([^/]+)/?$ /news/shell/index.html [L]
+</IfModule>
+
 # Redirect www to non-www (or vice versa) — pick one
 # <IfModule mod_rewrite.c>
 #     RewriteEngine On

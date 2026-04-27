@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { JobDetailSkeleton } from '@/components/ui/Skeleton'
 
 const badgeStyle = {
   Skilled:{ bg:'#DBEAFE',color:'#1D4ED8' },
@@ -29,11 +30,7 @@ export default function JobDetailClient({ id: idProp }) {
       .catch(() => { setNotFound(true); setLoading(false) })
   }, [id])
 
-  if (loading) return (
-    <section style={{padding:'120px 0',textAlign:'center'}}>
-      <i className="fas fa-spinner fa-spin" style={{fontSize:'2rem',color:'var(--muted)'}}/>
-    </section>
-  )
+  if (loading) return <JobDetailSkeleton/>
 
   if (notFound || !job) return (
     <section style={{padding:'120px 0',textAlign:'center'}}>
