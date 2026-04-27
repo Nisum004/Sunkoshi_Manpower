@@ -1,0 +1,7 @@
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+<Files "_*.php">
+    Order allow,deny
+    Deny from all
+</Files>

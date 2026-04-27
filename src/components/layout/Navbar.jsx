@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Building2, HardHat, HelpCircle, ImageIcon } from 'lucide-react'
@@ -26,7 +26,16 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropOpen, setDropOpen] = useState(false)
+  const closeTimer = useRef(null)
   const pathname = usePathname()
+
+  const openDrop = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setDropOpen(true)
+  }
+  const startClose = () => {
+    closeTimer.current = setTimeout(() => setDropOpen(false), 150)
+  }
   const isHome = pathname === '/'
 
   useEffect(() => {
@@ -51,7 +60,7 @@ export default function Navbar() {
       }}>
         <div className="container" style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
           <Link href="/" style={{display:'flex',alignItems:'center',gap:12,textDecoration:'none'}}>
-            <div style={{width:44,height:44,borderRadius:10,background:'var(--white)',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'var(--ff-head)',fontWeight:700,fontSize:'1.3rem',color:'var(--navy)',boxShadow:'0 2px 12px rgba(43,54,117,0.15)'}}>S</div>
+            <img src="/images/logo.png" alt="Sunkoshi Manpower Logo" style={{width:44,height:44,objectFit:'contain',flexShrink:0}}/>
             <div>
               <div style={{fontFamily:'var(--ff-head)',fontSize:'1.1rem',fontWeight:700,color:light?'var(--white)':'var(--navy)',transition:'color 0.4s'}}>Sunkoshi Manpower</div>
               <div style={{fontSize:'0.65rem',color:light?'rgba(255,255,255,0.6)':'var(--muted)',textTransform:'uppercase',letterSpacing:'0.08em',transition:'color 0.4s'}}>Est. 1995 · License 69/052/53</div>
@@ -61,13 +70,14 @@ export default function Navbar() {
           <ul style={{display:'flex',alignItems:'center',gap:28,listStyle:'none'}} className="desk-nav">
             {navLinks.map(link => (
               <li key={link.label} style={{position:'relative'}}
-                onMouseEnter={()=>link.dropdown&&setDropOpen(true)}
-                onMouseLeave={()=>link.dropdown&&setDropOpen(false)}>
+                onMouseEnter={()=>link.dropdown&&openDrop()}
+                onMouseLeave={()=>link.dropdown&&startClose()}>
                 {link.dropdown ? (<>
                   <button style={{background:'none',border:'none',cursor:'pointer',fontFamily:'var(--ff-body)',fontSize:'0.88rem',fontWeight:500,color:light?'rgba(255,255,255,0.9)':'var(--navy)',display:'flex',alignItems:'center',gap:4,padding:'4px 0'}}>
                     {link.label} <i className="fas fa-chevron-down" style={{fontSize:'0.6rem',transition:'transform 0.3s',transform:dropOpen?'rotate(180deg)':'none'}}/>
                   </button>
-                  <div style={{position:'absolute',top:'calc(100% + 14px)',left:'50%',minWidth:270,background:'var(--white)',borderRadius:12,boxShadow:'0 20px 60px rgba(43,54,117,0.18)',border:'1px solid var(--border)',padding:8,opacity:dropOpen?1:0,visibility:dropOpen?'visible':'hidden',transform:dropOpen?'translateX(-50%) translateY(0)':'translateX(-50%) translateY(-8px)',transition:'all 0.25s',pointerEvents:dropOpen?'auto':'none'}}>
+                  <div onMouseEnter={openDrop} onMouseLeave={startClose}
+                    style={{position:'absolute',top:'calc(100% + 14px)',left:'50%',minWidth:270,background:'var(--white)',borderRadius:12,boxShadow:'0 20px 60px rgba(43,54,117,0.18)',border:'1px solid var(--border)',padding:8,opacity:dropOpen?1:0,visibility:dropOpen?'visible':'hidden',transform:dropOpen?'translateX(-50%) translateY(0)':'translateX(-50%) translateY(-8px)',transition:'all 0.25s',pointerEvents:dropOpen?'auto':'none'}}>
                     <div style={{position:'absolute',top:-6,left:'50%',transform:'translateX(-50%)',width:12,height:12,background:'var(--white)',border:'1px solid var(--border)',borderBottom:'none',borderRight:'none',rotate:'45deg'}}/>
                     {link.dropdown.map(d=>(
                       <Link key={d.href} href={d.href} style={{display:'flex',alignItems:'flex-start',gap:12,padding:'12px 14px',borderRadius:8,textDecoration:'none',transition:'background 0.2s'}}

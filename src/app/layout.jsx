@@ -11,7 +11,7 @@ const BASE = 'https://www.sunkoshimanpower.com'
 export const metadata = {
   metadataBase: new URL(BASE),
   title: {
-    default: 'Sunkoshi Manpower Service (P.) Ltd. – Nepal Recruitment Agency Since 1995',
+    default: 'Sunkoshi Manpower Service(P.)Ltd | Since 1995',
     template: '%s – Sunkoshi Manpower',
   },
   description: 'Government-licensed Nepal manpower agency (No. 69/052/53) with 30+ years recruiting skilled workers to Gulf countries, Malaysia, and Japan. NAFEA member.',
@@ -67,7 +67,8 @@ export default function RootLayout({ children }) {
       <head>
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/logo.png" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
           crossOrigin="anonymous" referrerPolicy="no-referrer" />
