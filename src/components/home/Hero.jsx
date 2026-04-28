@@ -28,17 +28,9 @@ export default function Hero() {
               Your Career<br/>Abroad Starts<br/><em style={{fontStyle:'normal',color:'var(--accent)'}}>{company.tagline}</em>
             </h1>
             <p style={{fontSize:'1.05rem',color:'rgba(255,255,255,0.75)',lineHeight:1.8,marginBottom:36,maxWidth:480}}>{company.description}</p>
-            <div style={{display:'flex',gap:14,flexWrap:'wrap',marginBottom:48}}>
+            <div style={{display:'flex',gap:14,flexWrap:'wrap'}}>
               <Link href="/resources/job-seekers" className="btn btn-accent"><i className="fas fa-paper-plane"/>Send Your CV</Link>
               <Link href="/jobs" className="btn btn-outline-white"><i className="fas fa-briefcase"/>View Jobs</Link>
-            </div>
-            <div className="hero-stats" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'12px 0',paddingTop:20,borderTop:'1px solid rgba(255,255,255,0.12)'}}>
-              {[{n:'10,000+',l:'Workers Placed'},{n:'30',l:'Years Experience'},{n:'117+',l:'Global Clients'},{n:'3',l:'Country Offices'}].map((t,i)=>(
-                <div key={i} style={{textAlign:'center',borderRight:i<3?'1px solid rgba(255,255,255,0.2)':'none',padding:'0 8px'}}>
-                  <div style={{fontFamily:'var(--ff-head)',fontSize:'1.8rem',fontWeight:700,color:'var(--accent)',lineHeight:1}}>{t.n}</div>
-                  <div style={{fontSize:'0.7rem',color:'rgba(255,255,255,0.6)',textTransform:'uppercase',letterSpacing:'0.08em',marginTop:4,lineHeight:1.3}}>{t.l}</div>
-                </div>
-              ))}
             </div>
           </div>
           <div className="hero-card-wrap">

@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { company, contact } from '@/data/company'
+import { company, contact, social } from '@/data/company'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -15,8 +15,13 @@ export default function Footer() {
                 Nepal's trusted recruitment agency since {company.established}. Connecting skilled Nepali workers with world-class employers globally.
               </p>
               <div style={{display:'flex',gap:10,marginTop:20}}>
-                {['facebook-f','whatsapp','envelope'].map(icon=>(
-                  <a key={icon} href="#" style={{width:36,height:36,borderRadius:8,background:'rgba(255,255,255,0.08)',display:'flex',alignItems:'center',justifyContent:'center',color:'rgba(255,255,255,0.5)',fontSize:'0.9rem',transition:'all 0.3s'}}
+                {[
+                  { icon:'facebook-f', href: social.facebook || '#' },
+                  { icon:'whatsapp',   href: `https://wa.me/${social.whatsapp}` },
+                  { icon:'envelope',   href: `mailto:${contact.hq.emails[0]}` },
+                ].map(({icon,href})=>(
+                  <a key={icon} href={href} target={icon!=='envelope'?'_blank':undefined} rel="noopener noreferrer"
+                    style={{width:36,height:36,borderRadius:8,background:'rgba(255,255,255,0.08)',display:'flex',alignItems:'center',justifyContent:'center',color:'rgba(255,255,255,0.5)',fontSize:'0.9rem',transition:'all 0.3s'}}
                     onMouseEnter={e=>{e.currentTarget.style.background='var(--blue)';e.currentTarget.style.color='white'}}
                     onMouseLeave={e=>{e.currentTarget.style.background='rgba(255,255,255,0.08)';e.currentTarget.style.color='rgba(255,255,255,0.5)'}}>
                     <i className={`fa${icon==='envelope'?'s':'b'} fa-${icon}`}/>

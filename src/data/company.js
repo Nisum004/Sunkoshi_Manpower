@@ -20,8 +20,8 @@ export const company = {
 
 export const stats = [
   { number: 10000, suffix: '+', label: 'Workers Deployed'  },
-  { number: 30,    suffix: '',  label: 'Years Experience'   },
-  { number: 117,   suffix: '+', label: 'Client Companies'   },
+  { number: 31,    suffix: '',  label: 'Years Experience'   },
+  { number: 120,   suffix: '+', label: 'Client Companies'   },
   { number: 6,     suffix: '',  label: 'Countries We Serve' },
 ]
 

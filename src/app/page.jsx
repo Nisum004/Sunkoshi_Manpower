@@ -8,7 +8,7 @@ import Categories from '@/components/home/Categories'
 import Testimonials from '@/components/home/Testimonials'
 import MDMessage from '@/components/home/MDMessage'
 import NewsPreview from '@/components/home/NewsPreview'
-import ClientsTicker from '@/components/home/ClientsTicker'
+import ClientsTabs from '@/components/home/ClientsTabs'
 import QuickApply from '@/components/home/QuickApply'
 
 export default function HomePage() {
@@ -24,7 +24,7 @@ export default function HomePage() {
       <Testimonials />
       <MDMessage />
       <NewsPreview />
-      <ClientsTicker />
+      <ClientsTabs />
       <QuickApply />
     </>
   )

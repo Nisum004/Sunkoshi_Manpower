@@ -2,7 +2,8 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Building2, HardHat, HelpCircle, ImageIcon } from 'lucide-react'
+import { Building2, HardHat, HelpCircle, ImageIcon, Phone } from 'lucide-react'
+import { contact } from '@/data/company'
 
 const navLinks = [
   { label: 'Home',         href: '/'             },
@@ -47,6 +48,8 @@ export default function Navbar() {
   useEffect(() => { setMenuOpen(false) }, [pathname])
 
   const light = !scrolled && isHome
+  const phone = contact.hq.phones[0]
+  const telHref = `tel:${phone.replace(/[^+\d]/g, '')}`
 
   return (
     <>
@@ -55,25 +58,33 @@ export default function Navbar() {
         background: light ? 'transparent' : 'rgba(255,255,255,0.97)',
         backdropFilter: light ? 'none' : 'blur(12px)',
         boxShadow: light ? 'none' : '0 4px 32px rgba(43,54,117,0.10)',
-        padding: scrolled ? '10px 0' : '18px 0',
+        padding: scrolled ? '10px 0' : '14px 0',
         transition: 'all 0.4s',
       }}>
         <div className="container" style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-          <Link href="/" style={{display:'flex',alignItems:'center',gap:12,textDecoration:'none'}}>
-            <img src="/images/logo.png" alt="Sunkoshi Manpower Logo" style={{width:44,height:44,objectFit:'contain',flexShrink:0}}/>
+
+          {/* Logo + brand */}
+          <Link href="/" style={{display:'flex',alignItems:'center',gap:16,textDecoration:'none'}}>
+            <img src="/images/logo.png" alt="Sunkoshi Manpower Logo"
+              style={{width: scrolled ? 60 : 88, height: scrolled ? 60 : 88, objectFit:'contain', flexShrink:0, transition:'all 0.4s'}}/>
             <div>
-              <div style={{fontFamily:'var(--ff-head)',fontSize:'1.1rem',fontWeight:700,color:light?'var(--white)':'var(--navy)',transition:'color 0.4s'}}>Sunkoshi Manpower</div>
-              <div style={{fontSize:'0.65rem',color:light?'rgba(255,255,255,0.6)':'var(--muted)',textTransform:'uppercase',letterSpacing:'0.08em',transition:'color 0.4s'}}>Est. 1995 · License 69/052/53</div>
+              <div style={{fontFamily:'var(--ff-head)', fontSize: scrolled ? '1.35rem' : '1.9rem', fontWeight:700, color:light?'var(--white)':'var(--navy)', transition:'all 0.4s', lineHeight:1.1}}>
+                Sunkoshi Manpower
+              </div>
+              <div style={{fontSize:'0.72rem', color:light?'rgba(255,255,255,0.6)':'var(--muted)', textTransform:'uppercase', letterSpacing:'0.08em', transition:'color 0.4s', marginTop:4}}>
+                Est. 1995 · License 69/052/53
+              </div>
             </div>
           </Link>
 
+          {/* Desktop nav */}
           <ul style={{display:'flex',alignItems:'center',gap:28,listStyle:'none'}} className="desk-nav">
             {navLinks.map(link => (
               <li key={link.label} style={{position:'relative'}}
                 onMouseEnter={()=>link.dropdown&&openDrop()}
                 onMouseLeave={()=>link.dropdown&&startClose()}>
                 {link.dropdown ? (<>
-                  <button style={{background:'none',border:'none',cursor:'pointer',fontFamily:'var(--ff-body)',fontSize:'0.88rem',fontWeight:500,color:light?'rgba(255,255,255,0.9)':'var(--navy)',display:'flex',alignItems:'center',gap:4,padding:'4px 0'}}>
+                  <button style={{background:'none',border:'none',cursor:'pointer',fontFamily:'var(--ff-body)',fontSize:'1.05rem',fontWeight:600,color:light?'rgba(255,255,255,0.9)':'var(--navy)',display:'flex',alignItems:'center',gap:4,padding:'4px 0'}}>
                     {link.label} <i className="fas fa-chevron-down" style={{fontSize:'0.6rem',transition:'transform 0.3s',transform:dropOpen?'rotate(180deg)':'none'}}/>
                   </button>
                   <div onMouseEnter={openDrop} onMouseLeave={startClose}
@@ -85,22 +96,29 @@ export default function Navbar() {
                         onMouseLeave={e=>e.currentTarget.style.background='transparent'}>
                         <span style={{color:'var(--blue)',flexShrink:0,marginTop:2}}><d.Icon size={20}/></span>
                         <div>
-                          <div style={{fontSize:'0.88rem',fontWeight:600,color:'var(--navy)'}}>{d.label}</div>
-                          <div style={{fontSize:'0.75rem',color:'var(--muted)',marginTop:2}}>{d.desc}</div>
+                          <div style={{fontSize:'0.9rem',fontWeight:600,color:'var(--navy)'}}>{d.label}</div>
+                          <div style={{fontSize:'0.78rem',color:'var(--muted)',marginTop:2}}>{d.desc}</div>
                         </div>
                       </Link>
                     ))}
                   </div>
                 </>) : (
-                  <Link href={link.href} style={{fontSize:'0.88rem',fontWeight:500,color:light?'rgba(255,255,255,0.9)':'var(--navy)',padding:'4px 0',borderBottom:pathname===link.href?'2px solid var(--accent)':'2px solid transparent',transition:'all 0.3s',textDecoration:'none'}}>
+                  <Link href={link.href} style={{fontSize:'1.05rem',fontWeight:600,color:light?'rgba(255,255,255,0.9)':'var(--navy)',padding:'4px 0',borderBottom:pathname===link.href?'2px solid var(--accent)':'2px solid transparent',transition:'all 0.3s',textDecoration:'none'}}>
                     {link.label}
                   </Link>
                 )}
               </li>
             ))}
-            <li><Link href="/resources/job-seekers" className="btn btn-accent" style={{padding:'10px 20px',fontSize:'0.85rem'}}>Apply Now</Link></li>
+            {/* Phone CTA */}
+            <li>
+              <a href={telHref}
+                style={{display:'flex',alignItems:'center',gap:7,padding:'9px 18px',background:'var(--accent)',color:'var(--navy)',borderRadius:100,fontWeight:700,fontSize:'0.88rem',textDecoration:'none',transition:'all 0.3s',whiteSpace:'nowrap',boxShadow:'0 2px 12px rgba(255,180,0,0.3)'}}>
+                <Phone size={15}/>{phone}
+              </a>
+            </li>
           </ul>
 
+          {/* Hamburger */}
           <button onClick={()=>setMenuOpen(!menuOpen)} className="hamburger" aria-label="Menu"
             style={{display:'none',background:'none',border:'none',cursor:'pointer',padding:4,flexDirection:'column',gap:5}}>
             {[0,1,2].map(i=>(
@@ -123,11 +141,14 @@ export default function Navbar() {
             ))}
           </div>
         ):(
-          <Link key={link.label} href={link.href} onClick={()=>setMenuOpen(false)} style={{fontSize:'1.5rem',fontFamily:'var(--ff-head)',fontWeight:700,color:'rgba(255,255,255,0.88)',padding:'6px 0',textDecoration:'none'}}>
+          <Link key={link.label} href={link.href} onClick={()=>setMenuOpen(false)} style={{fontSize:'1.6rem',fontFamily:'var(--ff-head)',fontWeight:700,color:'rgba(255,255,255,0.88)',padding:'6px 0',textDecoration:'none'}}>
             {link.label}
           </Link>
         ))}
-        <Link href="/resources/job-seekers" onClick={()=>setMenuOpen(false)} className="btn btn-accent" style={{marginTop:16}}>Apply Now</Link>
+        <a href={telHref} onClick={()=>setMenuOpen(false)}
+          style={{display:'flex',alignItems:'center',gap:8,marginTop:20,padding:'12px 24px',background:'var(--accent)',color:'var(--navy)',borderRadius:100,fontWeight:700,fontSize:'1rem',textDecoration:'none'}}>
+          <Phone size={18}/>{phone}
+        </a>
       </div>
 
       <style jsx global>{`
