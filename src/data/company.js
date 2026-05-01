@@ -223,8 +223,8 @@ export const clients = [
 export const contact = {
   hq: {
     label:   'Nepal Head Office',
-    address: 'Kathmandu-30, Maitidevi, Kathmandu, Nepal (P.O. Box 917)',
-    phones:  ['+977-1-4522108', '+977-1-4519193'],
+    address: '4 Dhumbharai Marg, Kathmandu, Nepal',
+    phones:  ['+977-1-4519193', '+977-1-4519193'],
     fax:     '+977-1-4512039',
     emails:  ['info@sunkoshimanpower.com', 'sunkoshi.kathmandu@gmail.com'],
     mapLat:  27.7098,

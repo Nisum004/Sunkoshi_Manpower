@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="container">
           <div style={{display:'grid',gridTemplateColumns:'2fr 1fr 1fr 1fr',gap:40,marginBottom:48}}>
             <div>
-              <div style={{fontFamily:'var(--ff-head)',fontSize:'1.5rem',fontWeight:700,color:'var(--white)',marginBottom:12}}>Sunkoshi Manpower</div>
+              <div style={{fontFamily:'var(--ff-head)',fontSize:'1.5rem',fontWeight:700,color:'var(--white)',marginBottom:12}}>Sunkoshi Manpower Services Pvt. Ltd</div>
               <p style={{fontSize:'0.88rem',color:'rgba(255,255,255,0.55)',lineHeight:1.8,maxWidth:280}}>
                 Nepal's trusted recruitment agency since {company.established}. Connecting skilled Nepali workers with world-class employers globally.
               </p>
@@ -51,7 +51,7 @@ export default function Footer() {
             </div>
             <div>
               <div style={{fontSize:'0.72rem',textTransform:'uppercase',letterSpacing:'0.15em',color:'var(--accent)',fontWeight:600,marginBottom:16}}>Contact</div>
-              <p style={{fontSize:'0.82rem',color:'rgba(255,255,255,0.55)',lineHeight:1.8}}>Maitidevi, Kathmandu</p>
+              <p style={{fontSize:'0.82rem',color:'rgba(255,255,255,0.55)',lineHeight:1.8}}>Dhumbharai, Kathmandu</p>
               <a href={`tel:${contact.hq.phones[0]}`} style={{display:'block',fontSize:'0.82rem',color:'rgba(255,255,255,0.55)',marginTop:6,textDecoration:'none',transition:'color 0.3s'}}
                 onMouseEnter={e=>e.currentTarget.style.color='var(--accent)'}
                 onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,0.55)'}>

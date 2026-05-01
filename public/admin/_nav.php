@@ -16,6 +16,7 @@ $newEmp    = $pdo->query("SELECT COUNT(*) FROM employer_inquiries WHERE read_sta
     <a href="applications.php" class="nav-link <?= $currentPage==='applications'?'active':'' ?>"><i class="fas fa-file-alt"></i> Applications <?php if($newApps>0) echo "<span class='badge-count'>$newApps</span>"; ?></a>
     <a href="jobs.php" class="nav-link <?= $currentPage==='jobs'?'active':'' ?>"><i class="fas fa-briefcase"></i> Jobs</a>
     <a href="news.php" class="nav-link <?= $currentPage==='news'?'active':'' ?>"><i class="fas fa-newspaper"></i> News</a>
+    <a href="ads.php" class="nav-link <?= $currentPage==='ads'?'active':'' ?>"><i class="fas fa-bullhorn"></i> Ads</a>
     <a href="contacts.php" class="nav-link <?= $currentPage==='contacts'?'active':'' ?>"><i class="fas fa-envelope"></i> Contacts <?php if($newCon>0) echo "<span class='badge-count'>$newCon</span>"; ?></a>
     <a href="employers.php" class="nav-link <?= $currentPage==='employers'?'active':'' ?>"><i class="fas fa-building"></i> Employers <?php if($newEmp>0) echo "<span class='badge-count'>$newEmp</span>"; ?></a>
   </nav>

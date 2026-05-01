@@ -167,7 +167,7 @@ $flagCodes = ['ae'=>'UAE','bh'=>'Bahrain','jp'=>'Japan','kw'=>'Kuwait','my'=>'Ma
           </div>
           <div class="col-md-4">
             <label class="form-label small fw-bold">Apply Deadline</label>
-            <input type="date" id="jobDeadline" class="form-control">
+            <input type="text" id="jobDeadline" class="form-control" placeholder="DD/MM/YYYY" maxlength="10" oninput="autoDate(event)">
           </div>
           <div class="col-12">
             <label class="form-label small fw-bold">Job Description</label>
@@ -188,6 +188,10 @@ $flagCodes = ['ae'=>'UAE','bh'=>'Bahrain','jp'=>'Japan','kw'=>'Kuwait','my'=>'Ma
 </div>
 
 <script>
+function fmtDMY(ymd) { if (!ymd) return ''; const [y,m,d] = ymd.split('-'); return `${d}/${m}/${y}`; }
+function parseDMY(dmy) { if (!dmy || dmy.length < 10) return dmy; const [d,m,y] = dmy.split('/'); return `${y}-${m}-${d}`; }
+function autoDate(e) { let v = e.target.value.replace(/\D/g,''); if (v.length>2) v=v.slice(0,2)+'/'+v.slice(2); if (v.length>5) v=v.slice(0,5)+'/'+v.slice(5); e.target.value=v.slice(0,10); }
+
 document.getElementById('btnAdd').addEventListener('click', () => {
   document.getElementById('jobModalTitle').textContent = 'Add Job';
   document.getElementById('jobId').value = '';
@@ -217,7 +221,7 @@ document.querySelectorAll('.btn-edit').forEach(btn => {
     document.getElementById('jobBenefits').value = btn.dataset.benefits;
     document.getElementById('jobDesc').value = btn.dataset.description;
     document.getElementById('jobReq').value = btn.dataset.requirements;
-    document.getElementById('jobDeadline').value = btn.dataset.deadline;
+    document.getElementById('jobDeadline').value = fmtDMY(btn.dataset.deadline);
     document.getElementById('jobOpen').checked = btn.dataset.open === '1';
   });
 });
@@ -238,7 +242,7 @@ document.getElementById('saveJob').addEventListener('click', () => {
   fd.append('benefits', document.getElementById('jobBenefits').value);
   fd.append('description', document.getElementById('jobDesc').value);
   fd.append('requirements', document.getElementById('jobReq').value);
-  fd.append('deadline', document.getElementById('jobDeadline').value);
+  fd.append('deadline', parseDMY(document.getElementById('jobDeadline').value));
   fd.append('open', document.getElementById('jobOpen').checked ? 1 : 0);
   fetch('jobs.php', {method:'POST', body:fd})
     .then(r=>r.json())

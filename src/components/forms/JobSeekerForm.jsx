@@ -79,7 +79,7 @@ export default function JobSeekerForm({ defaultJob = '' }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <Field label="First Name" required><input className={inp} value={data.firstName} onChange={e => set('firstName', e.target.value)} placeholder="Ram" required /></Field>
           <Field label="Last Name" required><input className={inp} value={data.lastName} onChange={e => set('lastName', e.target.value)} placeholder="Sharma" required /></Field>
-          <Field label="Date of Birth" required><input type="date" className={inp} value={data.dob} onChange={e => set('dob', e.target.value)} required /></Field>
+          <Field label="Date of Birth" required><input type="text" className={inp} value={data.dob} placeholder="DD/MM/YYYY" maxLength={10} onChange={e=>{let v=e.target.value.replace(/\D/g,'');if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);if(v.length>5)v=v.slice(0,5)+'/'+v.slice(5);set('dob',v.slice(0,10))}} required /></Field>
           <Field label="Gender" required>
             <select className={inp} value={data.gender} onChange={e => set('gender', e.target.value)} required>
               <option value="">Select...</option>
@@ -99,7 +99,7 @@ export default function JobSeekerForm({ defaultJob = '' }) {
       {step === 1 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <Field label="Passport Number" required><input className={inp} value={data.passportNo} onChange={e => set('passportNo', e.target.value)} placeholder="PA1234567" required /></Field>
-          <Field label="Passport Expiry Date" required><input type="date" className={inp} value={data.passportExpiry} onChange={e => set('passportExpiry', e.target.value)} required /></Field>
+          <Field label="Passport Expiry Date" required><input type="text" className={inp} value={data.passportExpiry} placeholder="DD/MM/YYYY" maxLength={10} onChange={e=>{let v=e.target.value.replace(/\D/g,'');if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);if(v.length>5)v=v.slice(0,5)+'/'+v.slice(5);set('passportExpiry',v.slice(0,10))}} required /></Field>
           <Field label="Highest Education" required>
             <select className={inp} value={data.education} onChange={e => set('education', e.target.value)} required>
               <option value="">Select...</option>

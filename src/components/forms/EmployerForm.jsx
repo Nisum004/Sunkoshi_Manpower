@@ -126,7 +126,7 @@ export default function EmployerForm() {
             </select>
           </Field>
           <Field label="Expected Start Date">
-            <input type="date" className={inp} value={data.startDate} onChange={e => set('startDate', e.target.value)} />
+            <input type="text" className={inp} value={data.startDate} placeholder="DD/MM/YYYY" maxLength={10} onChange={e=>{let v=e.target.value.replace(/\D/g,'');if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);if(v.length>5)v=v.slice(0,5)+'/'+v.slice(5);set('startDate',v.slice(0,10))}} />
           </Field>
         </div>
 

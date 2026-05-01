@@ -1,62 +1,145 @@
 'use client'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { company } from '@/data/company'
 
-const destinations = [
-  {iso:'sa', c:'Saudi Arabia',  j:'Construction · Hospitality'},
-  {iso:'ae', c:'UAE / Dubai',   j:'Facilities · Security'},
-  {iso:'qa', c:'Qatar',         j:'Engineering · Catering'},
-  {iso:'my', c:'Malaysia',      j:'Manufacturing · Retail'},
-  {iso:'jp', c:'Japan',         j:'Technical · Factory'},
-  {iso:'kr', c:'South Korea',   j:'Industrial · Trainee'},
+const SLIDES = [
+  { src: '/images/countries/dubai.jpg'        },
+  { src: '/images/countries/saudi-arabia.jpg' },
+  { src: '/images/countries/malaysia.jpg'     },
+  { src: '/images/countries/japan.jpg'        },
+  { src: '/images/countries/qatar.jpg'        },
+  { src: '/images/countries/korea.jpg'        },
+  { src: '/images/countries/dubai-2.jpg'      },
+  { src: '/images/countries/japan-2.jpg'      },
 ]
 
 export default function Hero() {
+  const [current, setCurrent] = useState(0)
+  const currentRef = useRef(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      const next = (currentRef.current + 1) % SLIDES.length
+      currentRef.current = next
+      setCurrent(next)
+    }, 5500)
+    return () => clearInterval(id)
+  }, [])
+
+  function goTo(i) { currentRef.current = i; setCurrent(i) }
+
   return (
-    <section style={{minHeight:'100vh',background:'linear-gradient(160deg,#1a2240 0%,#2B3675 45%,#3D5AA9 100%)',display:'flex',alignItems:'center',position:'relative',overflow:'hidden'}}>
-      <div style={{position:'absolute',inset:0,backgroundImage:'radial-gradient(circle at 2px 2px,rgba(255,255,255,0.05) 1px,transparent 0)',backgroundSize:'32px 32px'}}/>
-      <div style={{position:'absolute',right:-80,top:-80,width:600,height:600,borderRadius:'50%',background:'radial-gradient(circle,rgba(94,143,212,0.2) 0%,transparent 70%)'}}/>
-      <div style={{position:'absolute',left:-120,bottom:-120,width:480,height:480,borderRadius:'50%',background:'radial-gradient(circle,rgba(200,168,75,0.12) 0%,transparent 70%)'}}/>
-      <div className="container" style={{position:'relative',zIndex:2,paddingTop:140,paddingBottom:80}}>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:60,alignItems:'center'}} className="hero-grid">
-          <div>
-            <div style={{display:'inline-flex',alignItems:'center',gap:8,background:'rgba(255,255,255,0.1)',border:'1px solid rgba(255,255,255,0.2)',borderRadius:100,padding:'6px 16px',marginBottom:24,fontSize:'0.78rem',color:'rgba(255,255,255,0.85)',fontWeight:500}}>
-              <span style={{width:7,height:7,background:'#4ade80',borderRadius:'50%',animation:'pulse 2s infinite',display:'block'}}/>
-              Nepal's Trusted Manpower Recruitment Agency
-            </div>
-            <h1 style={{fontFamily:'var(--ff-head)',fontSize:'clamp(2.4rem,5vw,4rem)',fontWeight:700,lineHeight:1.1,color:'var(--white)',marginBottom:24}}>
-              Your Career<br/>Abroad Starts<br/><em style={{fontStyle:'normal',color:'var(--accent)'}}>{company.tagline}</em>
-            </h1>
-            <p style={{fontSize:'1.05rem',color:'rgba(255,255,255,0.75)',lineHeight:1.8,marginBottom:36,maxWidth:480}}>{company.description}</p>
-            <div style={{display:'flex',gap:14,flexWrap:'wrap'}}>
-              <Link href="/resources/job-seekers" className="btn btn-accent"><i className="fas fa-paper-plane"/>Send Your CV</Link>
-              <Link href="/jobs" className="btn btn-outline-white"><i className="fas fa-briefcase"/>View Jobs</Link>
-            </div>
+    <section style={{ minHeight:'100vh', position:'relative', overflow:'hidden', display:'flex', alignItems:'center' }}>
+
+      {/* ── BACKGROUND SLIDES ── */}
+      {SLIDES.map((slide, i) => (
+        <div key={i} style={{
+          position:'absolute', inset:0, zIndex:1,
+          opacity: i === current ? 1 : 0,
+          transition:'opacity 1.8s ease-in-out',
+        }}>
+          <img src={slide.src} alt={slide.country} style={{
+            width:'100%', height:'100%', objectFit:'cover', display:'block',
+            animation:'kenBurns 18s ease-in-out infinite',
+            animationDelay:`${i * -2.25}s`,
+          }}/>
+        </div>
+      ))}
+
+      {/* ── OVERLAYS ── */}
+      {/* Dark gradient — strong on left for text readability, fades to right */}
+      <div style={{
+        position:'absolute', inset:0, zIndex:2,
+        background:'linear-gradient(105deg, rgba(12,18,40,0.93) 0%, rgba(26,34,64,0.82) 40%, rgba(26,34,64,0.5) 68%, rgba(26,34,64,0.18) 100%)',
+      }}/>
+      {/* Subtle grid dots */}
+      <div style={{
+        position:'absolute', inset:0, zIndex:3,
+        backgroundImage:'radial-gradient(circle at 2px 2px,rgba(255,255,255,0.04) 1px,transparent 0)',
+        backgroundSize:'32px 32px',
+      }}/>
+      {/* Bottom vignette */}
+      <div style={{
+        position:'absolute', bottom:0, left:0, right:0, height:160, zIndex:3,
+        background:'linear-gradient(to top, rgba(12,18,40,0.65), transparent)',
+      }}/>
+
+      {/* ── MAIN CONTENT ── */}
+      <div className="container" style={{ position:'relative', zIndex:4, paddingTop:150, paddingBottom:110 }}>
+        <div style={{ maxWidth:600 }}>
+
+          {/* Badge */}
+          <div style={{
+            display:'inline-flex', alignItems:'center', gap:8,
+            background:'rgba(255,255,255,0.1)', border:'1px solid rgba(255,255,255,0.2)',
+            borderRadius:100, padding:'6px 16px', marginBottom:24,
+            fontSize:'0.78rem', color:'rgba(255,255,255,0.88)', fontWeight:500,
+            animation:'fadeUp 0.7s both 0.1s',
+          }}>
+            <span style={{ width:7, height:7, background:'#4ade80', borderRadius:'50%', animation:'pulse 2s infinite', display:'block' }}/>
+            Nepal's Trusted Manpower Recruitment Agency
           </div>
-          <div className="hero-card-wrap">
-            <div style={{background:'rgba(255,255,255,0.07)',backdropFilter:'blur(20px)',border:'1px solid rgba(255,255,255,0.15)',borderRadius:20,padding:32}}>
-              <h3 style={{fontFamily:'var(--ff-head)',fontSize:'1.4rem',fontWeight:600,color:'var(--white)',marginBottom:20}}>Where We Place Workers</h3>
-              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
-                {destinations.map(d=>(
-                  <div key={d.c} style={{background:'rgba(255,255,255,0.08)',borderRadius:10,padding:'12px 14px',display:'flex',alignItems:'center',gap:10,transition:'background 0.3s',cursor:'default'}}
-                    onMouseEnter={e=>e.currentTarget.style.background='rgba(255,255,255,0.14)'}
-                    onMouseLeave={e=>e.currentTarget.style.background='rgba(255,255,255,0.08)'}>
-                    <span className={`fi fi-${d.iso}`} style={{width:28,height:21,display:'inline-block',backgroundSize:'cover',borderRadius:3,flexShrink:0}}/>
-                    <div>
-                      <div style={{fontWeight:600,fontSize:'0.85rem',color:'var(--white)'}}>{d.c}</div>
-                      <div style={{fontSize:'0.72rem',color:'rgba(255,255,255,0.55)'}}>{d.j}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+
+          {/* Headline */}
+          <h1 style={{
+            fontFamily:'var(--ff-head)', fontSize:'clamp(2.6rem,5.5vw,4.6rem)',
+            fontWeight:700, lineHeight:1.08, color:'var(--white)', marginBottom:22,
+            animation:'fadeUp 0.9s both 0.3s',
+          }}>
+            Your Career<br/>Abroad Starts<br/>
+            <em style={{ fontStyle:'normal', color:'var(--accent)' }}>{company.tagline}</em>
+          </h1>
+
+          {/* Sub */}
+          <p style={{
+            fontSize:'1.08rem', color:'rgba(255,255,255,0.76)', lineHeight:1.8,
+            marginBottom:36, maxWidth:500,
+            animation:'fadeUp 0.7s both 0.52s',
+          }}>
+            {company.description}
+          </p>
+
+          {/* CTAs */}
+          <div style={{ display:'flex', gap:14, flexWrap:'wrap', animation:'fadeUp 0.7s both 0.72s' }}>
+            <Link href="/resources/job-seekers" className="btn btn-accent">
+              <i className="fas fa-paper-plane"/>Send Your CV
+            </Link>
+            <Link href="/jobs" className="btn btn-outline-white">
+              <i className="fas fa-briefcase"/>View Jobs
+            </Link>
+          </div>
+
+          {/* Slide dots */}
+          <div style={{ display:'flex', gap:8, alignItems:'center', marginTop:44, animation:'fadeUp 0.7s both 0.9s' }}>
+            {SLIDES.map((_, i) => (
+              <button key={i} onClick={() => goTo(i)} aria-label={`Slide ${i+1}`}
+                style={{
+                  width: i === current ? 28 : 8, height:8, borderRadius:100,
+                  border:'none', cursor:'pointer', padding:0,
+                  background: i === current ? 'var(--accent)' : 'rgba(255,255,255,0.32)',
+                  transition:'all 0.35s',
+                }}/>
+            ))}
           </div>
         </div>
       </div>
-      <div style={{position:'absolute',bottom:28,left:'50%',transform:'translateX(-50%)',display:'flex',flexDirection:'column',alignItems:'center',gap:8,color:'rgba(255,255,255,0.45)',fontSize:'0.7rem',letterSpacing:'0.1em',textTransform:'uppercase',cursor:'pointer',zIndex:2}}
-        onClick={()=>document.getElementById('stats')?.scrollIntoView({behavior:'smooth'})}>
+
+{/* ── SCROLL INDICATOR ── */}
+      <div style={{
+        position:'absolute', bottom:24, left:'50%', transform:'translateX(-50%)',
+        display:'flex', flexDirection:'column', alignItems:'center', gap:8,
+        color:'rgba(255,255,255,0.42)', fontSize:'0.68rem', letterSpacing:'0.1em',
+        textTransform:'uppercase', cursor:'pointer', zIndex:5,
+      }}
+        onClick={() => document.getElementById('stats')?.scrollIntoView({ behavior:'smooth' })}
+      >
         <span>Scroll</span>
-        <div style={{width:1,height:40,background:'linear-gradient(to bottom,rgba(255,255,255,0.5),transparent)',animation:'scrollLine 2s ease-in-out infinite'}}/>
+        <div style={{
+          width:1, height:36,
+          background:'linear-gradient(to bottom,rgba(255,255,255,0.5),transparent)',
+          animation:'scrollLine 2s ease-in-out infinite',
+        }}/>
       </div>
     </section>
   )

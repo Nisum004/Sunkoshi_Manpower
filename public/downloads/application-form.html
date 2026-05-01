@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sunkoshi Manpower Service — Application Form</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #e5e7eb;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  :root {
+    --brand-blue: #1f3c88;
+    --table-border: #000;
+    --table-text: #000;
+  }
+
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    margin: 12mm auto;
+    padding: 10mm 12mm 8mm 12mm;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    position: relative;
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    .sheet { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; padding: 10mm 12mm 8mm 12mm; }
+    .no-print { display: none !important; }
+    input:focus { background: transparent !important; }
+  }
+
+  /* ── DOWNLOAD BAR ── */
+  .download-bar {
+    width: 210mm;
+    margin: 0 auto 0 auto;
+    background: #1f3c88;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .download-bar button {
+    background: #C8A84B;
+    color: #1f3c88;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 18px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .download-bar button:hover { opacity: 0.9; }
+
+  /* ── HEADER ── */
+  .top-header { text-align: center; padding-bottom: 4px; }
+  .logo { width: 66px; height: 66px; margin: 0 auto 4px auto; display: block; object-fit: contain; }
+  .company-title { color: var(--brand-blue); font-size: 24px; font-weight: 800; letter-spacing: 0.5px; }
+  .license-line { font-style: italic; font-size: 10.5px; margin-top: 2px; color: #444; }
+  .header-rule { border: 0; border-top: 2px solid var(--brand-blue); margin: 6px 0 0 0; }
+
+  /* ── REF / APPLIED / PHOTO ── */
+  .ref-row { display: flex; justify-content: space-between; align-items: stretch; margin-top: 10px; gap: 12px; }
+  .ref-block { flex: 1; font-size: 11px; line-height: 1.7; }
+  .ref-block b { font-weight: 700; }
+  .ref-block .field { display: flex; align-items: baseline; gap: 6px; margin-bottom: 13px; }
+  .ref-block .field input {
+    flex: none; width: 36%; border: none; border-bottom: 1px solid var(--table-border);
+    background: transparent; font: inherit; outline: none; padding: 0 4px; height: 18px;
+  }
+  .ref-block .field input:focus { background: #fffbe6; }
+  .photo-box {
+    width: 30mm; height: 38mm; border: 1.5px solid var(--brand-blue);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #888; font-size: 10px; flex-shrink: 0; gap: 4px;
+  }
+
+  /* ── SECTION BAR ── */
+  .section-bar {
+    background: #fff; color: var(--brand-blue); text-align: center;
+    font-weight: 900; letter-spacing: 3px; font-size: 12.5px;
+    padding: 4px 0; border-bottom: 1.5px solid var(--brand-blue); margin-top: 8px;
+  }
+
+  /* ── FORM TABLE ── */
+  table.form-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  table.form-table td {
+    border: 1px solid var(--table-border); padding: 0;
+    vertical-align: middle; height: 29px; background: #fff;
+  }
+  .field-row { display: flex; align-items: center; gap: 6px; padding: 0 8px; min-height: 29px; }
+  .lbl { font-weight: 700; white-space: nowrap; color: var(--table-text); }
+  .field-input {
+    flex: 1; border: 0; background: transparent; font: inherit;
+    outline: none; min-width: 0; padding: 0; color: var(--table-text);
+  }
+  .field-input:focus { background: #fffbe6; }
+
+  /* ── DATE INPUTS (3 boxes) ── */
+  .date-group { display: flex; align-items: center; gap: 3px; flex: 1; }
+  .date-group input {
+    border: none; border-bottom: 1px solid #000; background: transparent;
+    font: inherit; outline: none; text-align: center; padding: 0 2px; height: 18px;
+  }
+  .date-group input.yyyy { width: 44px; }
+  .date-group input.mm   { width: 26px; }
+  .date-group input.dd   { width: 26px; }
+  .date-group input:focus { background: #fffbe6; }
+  .date-group .sep { font-weight: 700; line-height: 1; color: #000; }
+
+  /* ── CHECKBOX ── */
+  input[type="checkbox"] {
+    appearance: none; -webkit-appearance: none;
+    width: 11px; height: 11px; border: 1px solid var(--table-border);
+    background: #fff; margin: 0 4px 0 0; cursor: pointer; position: relative;
+    flex-shrink: 0; vertical-align: middle;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  input[type="checkbox"]:checked::after {
+    content: "✓"; position: absolute; top: -5px; left: 0;
+    width: 11px; text-align: center; font-size: 13px;
+    line-height: 11px; color: #000; font-weight: 700;
+  }
+  .inline-opt { display: inline-flex; align-items: center; margin-right: 14px; font-size: 11px; cursor: pointer; }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    border: 1px solid var(--table-border); border-top: none;
+  }
+  .edu-grid label {
+    border-right: 1px solid var(--table-border); padding: 7px 8px;
+    font-size: 11px; display: flex; align-items: center; cursor: pointer;
+  }
+  .edu-grid label:last-child { border-right: none; }
+
+  /* ── LANGUAGES ── */
+  table.lang-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  table.lang-table th, table.lang-table td {
+    border: 1px solid var(--table-border); padding: 2px 4px; text-align: center; background: #fff;
+  }
+  table.lang-table thead .group { font-weight: 700; letter-spacing: 1px; padding: 5px 4px; }
+  table.lang-table thead .sub { font-weight: 600; font-size: 10px; padding: 3px; }
+  table.lang-table .name-col { width: 22%; padding: 0; }
+  table.lang-table .name-col input[type="text"] {
+    text-align: left; padding: 0 8px; height: 24px; width: 100%;
+    border: 0; background: transparent; font: inherit; font-weight: 700; outline: none;
+  }
+  table.lang-table .name-col input[type="text"]:focus { background: #fffbe6; }
+  table.lang-table tbody td { height: 24px; }
+
+  /* ── EXPERIENCE ── */
+  table.exp-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  table.exp-table th { font-weight: 700; padding: 6px 8px; border: 1px solid var(--table-border); background: #fff; }
+  table.exp-table td { border: 1px solid var(--table-border); padding: 0; height: 30px; background: #fff; }
+  table.exp-table td input[type="text"] {
+    width: 100%; height: 30px; padding: 0 8px; border: 0; background: transparent; font: inherit; outline: none;
+  }
+  table.exp-table td input[type="text"]:focus { background: #fffbe6; }
+  table.exp-table .year-col { width: 18%; }
+  table.exp-table .occ-col  { width: 45%; }
+  table.exp-table .comp-col { width: 37%; }
+
+  /* ── DECLARATION / SIG ── */
+  .declaration {
+    border: 1px solid var(--table-border); padding: 9px 10px;
+    font-size: 11px; border-bottom: none; margin-top: 10px; background: #fff; line-height: 1.6;
+  }
+  .sig-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--table-border); font-size: 11px; background: #fff;
+  }
+  .sig-row .cell { padding: 0; min-height: 36px; display: flex; align-items: center; }
+  .sig-row .cell:first-child { border-right: 1px solid var(--table-border); }
+  .sig-row .cell .field-row { width: 100%; padding: 0 10px; min-height: 36px; }
+</style>
+</head>
+<body>
+
+<!-- Print bar (hidden when printing) -->
+<div class="download-bar no-print">
+  <span>Sunkoshi Manpower — Application Form &nbsp;·&nbsp; Fill in and print, or print blank</span>
+  <button onclick="window.print()">&#128438; Print / Save as PDF</button>
+</div>
+
+<form class="sheet" autocomplete="off">
+
+  <!-- HEADER -->
+  <div class="top-header">
+    <img class="logo" src="/images/logo.png" alt="Sunkoshi Manpower Logo"
+      onerror="this.style.display='none';document.getElementById('svg-logo').style.display='block'">
+    <!-- SVG fallback -->
+    <svg id="svg-logo" class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="display:none">
+      <defs><clipPath id="cc"><circle cx="50" cy="50" r="46"/></clipPath></defs>
+      <circle cx="50" cy="50" r="48" fill="#fff" stroke="#1f3c88" stroke-width="2"/>
+      <g clip-path="url(#cc)">
+        <rect x="0" y="0" width="100" height="60" fill="#cfe3f3"/>
+        <polygon points="0,60 30,28 55,55 75,38 100,60" fill="#6b86b3"/>
+        <polygon points="10,60 40,18 70,60" fill="#3d5a93"/>
+        <polygon points="32,30 40,18 48,30 44,34 40,28 36,34" fill="#fff"/>
+        <rect x="0" y="60" width="100" height="40" fill="#3a7ab8"/>
+      </g>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#1f3c88" stroke-width="0.5"/>
+    </svg>
+    <div class="company-title">SUNKOSHI MANPOWER SERVICE (P.) LTD.</div>
+    <div class="license-line">License No. 69/052/53 &nbsp;·&nbsp; Issued by Department of Foreign Employment, Nepal</div>
+    <hr class="header-rule">
+  </div>
+
+  <!-- REF / APPLIED / POSITION + PHOTO -->
+  <div class="ref-row">
+    <div class="ref-block">
+      <div class="field"><b>Ref. No.:</b><input type="text" name="ref_no"></div>
+      <div class="field"><b>Applied for:</b><input type="text" name="applied_for"></div>
+      <div class="field"><b>Position:</b><input type="text" name="position"></div>
+    </div>
+    <div class="photo-box">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M6 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+      <span>Passport Photo</span>
+    </div>
+  </div>
+
+  <!-- PERSONAL DATA -->
+  <div class="section-bar">PERSONAL DATA</div>
+  <table class="form-table">
+    <tr>
+      <td style="width:50%"><div class="field-row"><span class="lbl">Full Name:</span><input type="text" class="field-input" name="name"></div></td>
+      <td style="width:50%" colspan="2"><div class="field-row"><span class="lbl">Passport No.:</span><input type="text" class="field-input" name="passport_no"></div></td>
+    </tr>
+    <tr>
+      <td><div class="field-row"><span class="lbl">Religion:</span><input type="text" class="field-input" name="religion"></div></td>
+      <td colspan="2">
+        <div class="field-row">
+          <span class="lbl">D.O.B.:</span>
+          <div class="date-group">
+            <input type="text" class="yyyy" name="dob_y" placeholder="YYYY" maxlength="4">
+            <span class="sep">-</span>
+            <input type="text" class="mm" name="dob_m" placeholder="MM" maxlength="2">
+            <span class="sep">-</span>
+            <input type="text" class="dd" name="dob_d" placeholder="DD" maxlength="2">
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td><div class="field-row"><span class="lbl">Nationality:</span><input type="text" class="field-input" name="nationality" value="Nepali"></div></td>
+      <td colspan="2"><div class="field-row"><span class="lbl">Age:</span><input type="text" class="field-input" name="age" style="max-width:60px"><span class="lbl" style="margin-left:16px">Height:</span><input type="text" class="field-input" name="height" style="max-width:80px"><span class="lbl" style="margin-left:16px">Weight:</span><input type="text" class="field-input" name="weight" style="max-width:80px"></div></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="field-row">
+          <span class="lbl">Sex:</span>
+          <label class="inline-opt"><input type="checkbox" name="sex_male"> Male</label>
+          <label class="inline-opt"><input type="checkbox" name="sex_female"> Female</label>
+        </div>
+      </td>
+      <td colspan="2">
+        <div class="field-row">
+          <span class="lbl">Passport Validity:</span>
+          <div class="date-group">
+            <input type="text" class="yyyy" name="pv_y" placeholder="YYYY" maxlength="4">
+            <span class="sep">-</span>
+            <input type="text" class="mm" name="pv_m" placeholder="MM" maxlength="2">
+            <span class="sep">-</span>
+            <input type="text" class="dd" name="pv_d" placeholder="DD" maxlength="2">
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="field-row">
+          <span class="lbl">Marital Status:</span>
+          <label class="inline-opt"><input type="checkbox" name="marital_single"> Single</label>
+          <label class="inline-opt"><input type="checkbox" name="marital_married"> Married</label>
+          <label class="inline-opt"><input type="checkbox" name="marital_other"> Other</label>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><div class="field-row"><span class="lbl">Tel / WhatsApp:</span><input type="text" class="field-input" name="tel"></div></td>
+      <td><div class="field-row"><span class="lbl">Email:</span><input type="text" class="field-input" name="email"></div></td>
+    </tr>
+    <tr>
+      <td colspan="3"><div class="field-row"><span class="lbl">Permanent Address / District:</span><input type="text" class="field-input" name="address"></div></td>
+    </tr>
+  </table>
+
+  <!-- EDUCATION -->
+  <div class="section-bar">EDUCATION</div>
+  <div class="edu-grid">
+    <label><input type="checkbox" name="edu_see"> SEE</label>
+    <label><input type="checkbox" name="edu_slc"> SLC / +2</label>
+    <label><input type="checkbox" name="edu_diploma"> Diploma / CTEVT</label>
+    <label><input type="checkbox" name="edu_bachelor"> Bachelor's</label>
+    <label><input type="checkbox" name="edu_master"> Master's</label>
+    <label><input type="checkbox" name="edu_other"> Others</label>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="section-bar">LANGUAGES</div>
+  <table class="lang-table">
+    <thead>
+      <tr>
+        <th class="group" rowspan="2">LANGUAGE</th>
+        <th class="group" colspan="3">SPEAKING</th>
+        <th class="group" colspan="3">READING</th>
+        <th class="group" colspan="3">WRITING</th>
+      </tr>
+      <tr>
+        <th class="sub">Excl.</th><th class="sub">Good</th><th class="sub">Basic</th>
+        <th class="sub">Excl.</th><th class="sub">Good</th><th class="sub">Basic</th>
+        <th class="sub">Excl.</th><th class="sub">Good</th><th class="sub">Basic</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="name-col"><input type="text" name="lang_1_name" value="English" style="font-weight:700"></td>
+        <td><input type="checkbox" name="lang_1_sp_excl"></td><td><input type="checkbox" name="lang_1_sp_good"></td><td><input type="checkbox" name="lang_1_sp_basic"></td>
+        <td><input type="checkbox" name="lang_1_rd_excl"></td><td><input type="checkbox" name="lang_1_rd_good"></td><td><input type="checkbox" name="lang_1_rd_basic"></td>
+        <td><input type="checkbox" name="lang_1_wr_excl"></td><td><input type="checkbox" name="lang_1_wr_good"></td><td><input type="checkbox" name="lang_1_wr_basic"></td>
+      </tr>
+      <tr>
+        <td class="name-col"><input type="text" name="lang_2_name"></td>
+        <td><input type="checkbox" name="lang_2_sp_excl"></td><td><input type="checkbox" name="lang_2_sp_good"></td><td><input type="checkbox" name="lang_2_sp_basic"></td>
+        <td><input type="checkbox" name="lang_2_rd_excl"></td><td><input type="checkbox" name="lang_2_rd_good"></td><td><input type="checkbox" name="lang_2_rd_basic"></td>
+        <td><input type="checkbox" name="lang_2_wr_excl"></td><td><input type="checkbox" name="lang_2_wr_good"></td><td><input type="checkbox" name="lang_2_wr_basic"></td>
+      </tr>
+      <tr>
+        <td class="name-col"><input type="text" name="lang_3_name"></td>
+        <td><input type="checkbox" name="lang_3_sp_excl"></td><td><input type="checkbox" name="lang_3_sp_good"></td><td><input type="checkbox" name="lang_3_sp_basic"></td>
+        <td><input type="checkbox" name="lang_3_rd_excl"></td><td><input type="checkbox" name="lang_3_rd_good"></td><td><input type="checkbox" name="lang_3_rd_basic"></td>
+        <td><input type="checkbox" name="lang_3_wr_excl"></td><td><input type="checkbox" name="lang_3_wr_good"></td><td><input type="checkbox" name="lang_3_wr_basic"></td>
+      </tr>
+      <tr>
+        <td class="name-col"><input type="text" name="lang_4_name"></td>
+        <td><input type="checkbox" name="lang_4_sp_excl"></td><td><input type="checkbox" name="lang_4_sp_good"></td><td><input type="checkbox" name="lang_4_sp_basic"></td>
+        <td><input type="checkbox" name="lang_4_rd_excl"></td><td><input type="checkbox" name="lang_4_rd_good"></td><td><input type="checkbox" name="lang_4_rd_basic"></td>
+        <td><input type="checkbox" name="lang_4_wr_excl"></td><td><input type="checkbox" name="lang_4_wr_good"></td><td><input type="checkbox" name="lang_4_wr_basic"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- WORKING EXPERIENCE -->
+  <div class="section-bar">WORKING EXPERIENCE</div>
+  <table class="exp-table">
+    <thead>
+      <tr>
+        <th class="year-col">Year (From – To)</th>
+        <th class="occ-col">Occupation / Job Description</th>
+        <th class="comp-col">Name of Company &amp; Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><input type="text" name="exp_1_year"></td><td><input type="text" name="exp_1_occ"></td><td><input type="text" name="exp_1_company"></td></tr>
+      <tr><td><input type="text" name="exp_2_year"></td><td><input type="text" name="exp_2_occ"></td><td><input type="text" name="exp_2_company"></td></tr>
+      <tr><td><input type="text" name="exp_3_year"></td><td><input type="text" name="exp_3_occ"></td><td><input type="text" name="exp_3_company"></td></tr>
+    </tbody>
+  </table>
+
+  <!-- DECLARATION -->
+  <div class="declaration">
+    I hereby declare that the above statements given are true and correct to the best of my knowledge and belief. I understand that any misrepresentation may result in disqualification.
+  </div>
+
+  <!-- DATE / SIGNATURE -->
+  <div class="sig-row">
+    <div class="cell">
+      <div class="field-row">
+        <span class="lbl">Date:</span>
+        <div class="date-group">
+          <input type="text" class="yyyy" name="sig_y" placeholder="YYYY" maxlength="4">
+          <span class="sep">-</span>
+          <input type="text" class="mm" name="sig_m" placeholder="MM" maxlength="2">
+          <span class="sep">-</span>
+          <input type="text" class="dd" name="sig_d" placeholder="DD" maxlength="2">
+        </div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="field-row"><span class="lbl">Signature:</span><input type="text" class="field-input" name="signature"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div style="margin-top:8px;text-align:center;font-size:9.5px;color:#555;padding-top:6px;border-top:1px solid #ddd">
+    Sunkoshi Manpower Service (P.) Ltd. &nbsp;·&nbsp; Kathmandu, Nepal &nbsp;·&nbsp; Tel: +977-1-4522108 / 4519193 &nbsp;·&nbsp; www.sunkoshimanpower.com
+  </div>
+
+</form>
+
+<script>
+/* Auto-advance focus: YYYY→MM→DD within date groups */
+document.querySelectorAll('.date-group').forEach(group => {
+  const [y, m, d] = group.querySelectorAll('input');
+  y.addEventListener('input', () => { if (y.value.length === 4) m.focus(); });
+  m.addEventListener('input', () => { if (m.value.length === 2) d.focus(); });
+});
+</script>
+</body>
+</html>

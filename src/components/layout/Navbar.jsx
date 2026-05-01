@@ -19,7 +19,7 @@ const navLinks = [
       { label: 'Photo Gallery',   href: '/gallery',               Icon: ImageIcon, desc: 'Sendoff events, training, and milestones'   },
     ],
   },
-  { label: 'News',    href: '/news'    },
+  { label: 'Ads',     href: '/ads'     },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -68,10 +68,13 @@ export default function Navbar() {
             <img src="/images/logo.png" alt="Sunkoshi Manpower Logo"
               style={{width: scrolled ? 60 : 88, height: scrolled ? 60 : 88, objectFit:'contain', flexShrink:0, transition:'all 0.4s'}}/>
             <div>
-              <div style={{fontFamily:'var(--ff-head)', fontSize: scrolled ? '1.35rem' : '1.9rem', fontWeight:700, color:light?'var(--white)':'var(--navy)', transition:'all 0.4s', lineHeight:1.1}}>
-                Sunkoshi Manpower
+              <div style={{fontFamily:"'Montserrat', sans-serif", fontSize: scrolled ? '1.55rem' : '2.1rem', fontWeight:600, color:light?'var(--white)':'var(--navy)', transition:'all 0.4s', lineHeight:1.0, letterSpacing:'0.01em'}}>
+                Sunkoshi
               </div>
-              <div style={{fontSize:'0.72rem', color:light?'rgba(255,255,255,0.6)':'var(--muted)', textTransform:'uppercase', letterSpacing:'0.08em', transition:'color 0.4s', marginTop:4}}>
+              <div style={{fontFamily:"'Montserrat', sans-serif", fontSize: scrolled ? '0.80rem' : '0.95rem', fontWeight:600, color:light?'rgba(255,255,255,0.85)':'var(--navy)', transition:'all 0.4s', lineHeight:1.2, letterSpacing:'0.04em', marginTop:3}}>
+                Manpower Services Pvt. Ltd.
+              </div>
+              <div style={{fontSize:'0.65rem', color:light?'rgba(255,255,255,0.5)':'var(--muted)', textTransform:'uppercase', letterSpacing:'0.08em', transition:'color 0.4s', marginTop:3}}>
                 Est. 1995 · License 69/052/53
               </div>
             </div>

@@ -105,7 +105,7 @@ $categories = ['Jobs','Announcement','Notice','News'];
           </div>
           <div class="col-md-3">
             <label class="form-label small fw-bold">Published Date</label>
-            <input type="date" id="newsDate" class="form-control" value="<?= date('Y-m-d') ?>">
+            <input type="text" id="newsDate" class="form-control" placeholder="DD/MM/YYYY" maxlength="10" value="<?= date('d/m/Y') ?>" oninput="autoDate(event)">
           </div>
           <div class="col-md-6">
             <label class="form-label small fw-bold">Slug <span class="text-muted fw-normal">(auto-generated if blank)</span></label>
@@ -144,11 +144,15 @@ $categories = ['Jobs','Announcement','Notice','News'];
 </div>
 
 <script>
+function fmtDMY(ymd) { if (!ymd) return ''; const [y,m,d] = ymd.split('-'); return `${d}/${m}/${y}`; }
+function parseDMY(dmy) { if (!dmy || dmy.length < 10) return dmy; const [d,m,y] = dmy.split('/'); return `${y}-${m}-${d}`; }
+function autoDate(e) { let v = e.target.value.replace(/\D/g,''); if (v.length>2) v=v.slice(0,2)+'/'+v.slice(2); if (v.length>5) v=v.slice(0,5)+'/'+v.slice(5); e.target.value=v.slice(0,10); }
+
 function clearNewsForm() {
   document.getElementById('newsId').value = '';
   document.getElementById('newsTitle').value = '';
   document.getElementById('newsSlug').value = '';
-  document.getElementById('newsDate').value = new Date().toISOString().split('T')[0];
+  const t=new Date(); document.getElementById('newsDate').value = String(t.getDate()).padStart(2,'0')+'/'+String(t.getMonth()+1).padStart(2,'0')+'/'+t.getFullYear();
   document.getElementById('newsExcerpt').value = '';
   document.getElementById('newsContent').value = '';
   document.getElementById('newsTags').value = '';
@@ -171,7 +175,7 @@ document.querySelectorAll('.btn-edit-news').forEach(btn => {
         document.getElementById('newsId').value = n.id;
         document.getElementById('newsTitle').value = n.title;
         document.getElementById('newsSlug').value = n.slug;
-        document.getElementById('newsDate').value = n.date;
+        document.getElementById('newsDate').value = fmtDMY(n.date);
         document.getElementById('newsExcerpt').value = n.excerpt || '';
         document.getElementById('newsContent').value = n.content || '';
         document.getElementById('newsTags').value = n.tags || '';
@@ -191,7 +195,7 @@ document.getElementById('saveNews').addEventListener('click', () => {
   fd.append('id', document.getElementById('newsId').value);
   fd.append('title', title);
   fd.append('slug', document.getElementById('newsSlug').value);
-  fd.append('published_at', document.getElementById('newsDate').value);
+  fd.append('published_at', parseDMY(document.getElementById('newsDate').value));
   fd.append('excerpt', document.getElementById('newsExcerpt').value);
   fd.append('content', document.getElementById('newsContent').value);
   fd.append('category', document.getElementById('newsCat').value);

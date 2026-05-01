@@ -42,7 +42,7 @@ function JobSeekerForm() {
   const [loading, setLoading]           = useState(false)
   const [submittedData, setSubmittedData] = useState(null)
   const [showPreview, setShowPreview]     = useState(false)
-  const [pdfLoading, setPdfLoading]       = useState(false)
+  const [downloading, setDownloading]     = useState(false)
 
   // Language rows — English is always first and fixed
   const [langRows, setLangRows] = useState([
@@ -103,48 +103,53 @@ function JobSeekerForm() {
     return el.outerHTML.replace(/src="\/images\//g, `src="${origin}/images/`)
   }
 
-  // Print: window.open() MUST be called synchronously (before any await)
-  // or the browser treats it as a popup and blocks it
-  function printBiodata() {
+  function openBiodataWindow(autoPrint = false) {
     const win = window.open('', '_blank', 'width=860,height=1100')
     if (!win) { alert('Please allow popups for this site.'); return }
+    const name = submittedData?.full_name || 'Applicant'
     const html = getBiodataHTML() || ''
     win.document.write(`<!DOCTYPE html><html><head>
       <meta charset="UTF-8">
-      <title>Sunkoshi Biodata – ${submittedData?.full_name || ''}</title>
+      <title>${name}_Sunkoshi</title>
       <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { width: 210mm; background: #fff; }
+        * { box-sizing: border-box; margin: 0; padding: 0;
+            -webkit-print-color-adjust: exact; print-color-adjust: exact; color-adjust: exact; }
+        html, body { width: 210mm; background: #fff; color: #1a3a8c; }
         @page { size: A4 portrait; margin: 0; }
       </style>
     </head><body>${html}</body></html>`)
     win.document.close()
-    setTimeout(() => { try { win.focus(); win.print() } catch(e) {} }, 800)
+    if (autoPrint) setTimeout(() => { try { win.focus(); win.print() } catch(e) {} }, 800)
   }
 
+  function printBiodata() { openBiodataWindow(true) }
+
   async function downloadPDF() {
-    setPdfLoading(true)
+    const el = captureRef.current
+    if (!el) return
+    const rawName = submittedData?.full_name || 'Applicant'
+    const filename = rawName.trim().replace(/\s+/g, '_') + '_Sunkoshi'
+    setDownloading(true)
     try {
-      const el = captureRef.current
-      if (!el) throw new Error('not ready')
-      const { default: html2canvas } = await import('html2canvas')
-      const { jsPDF } = await import('jspdf')
+      const [{ default: html2canvas }, { default: jsPDF }] = await Promise.all([
+        import('html2canvas'),
+        import('jspdf'),
+      ])
       const canvas = await html2canvas(el, {
-        scale: 2, useCORS: true, allowTaint: true,
-        backgroundColor: '#ffffff', logging: false,
-        width: el.offsetWidth, height: el.offsetHeight,
+        scale: 2, useCORS: true, logging: false,
+        width: 794, windowWidth: 794,
+        backgroundColor: '#ffffff',
       })
-      const a4W = 210
-      const pdfH = (canvas.height / canvas.width) * a4W
+      const imgData = canvas.toDataURL('image/jpeg', 0.97)
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
-      pdf.addImage(canvas.toDataURL('image/jpeg', 0.97), 'JPEG', 0, 0, a4W, Math.min(pdfH, 297))
-      pdf.save(`Sunkoshi_Biodata_${submittedData?.full_name || 'Application'}.pdf`)
-    } catch(err) {
-      console.error('PDF error:', err)
-      // Fallback: open print window and let user Save as PDF
-      printBiodata()
+      const pdfW = pdf.internal.pageSize.getWidth()
+      const pdfH = (canvas.height * pdfW) / canvas.width
+      pdf.addImage(imgData, 'JPEG', 0, 0, pdfW, pdfH)
+      pdf.save(filename + '.pdf')
+    } catch {
+      alert('PDF generation failed. Please use the Print button instead.')
     }
-    setPdfLoading(false)
+    setDownloading(false)
   }
 
   return (
@@ -171,6 +176,25 @@ function JobSeekerForm() {
             <strong>Important:</strong> Sunkoshi Manpower is a government-licensed agency. We never ask for upfront fees before a genuine job offer is made. Beware of fraudulent agents.
           </div>
         </div>
+
+        {/* Download blank form */}
+        <div style={{marginTop:20,padding:'18px 20px',background:'var(--white)',borderRadius:12,border:'1px solid var(--border)',display:'flex',gap:14,alignItems:'center'}}>
+          <div style={{flexShrink:0,width:44,height:44,background:'var(--pale)',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <Download size={20} color="var(--navy)"/>
+          </div>
+          <div style={{flex:1}}>
+            <div style={{fontWeight:700,color:'var(--navy)',fontSize:'0.88rem',marginBottom:2}}>Prefer a paper form?</div>
+            <div style={{fontSize:'0.78rem',color:'var(--muted)',lineHeight:1.5}}>Download the blank application form, fill by hand, and bring it to our office.</div>
+          </div>
+          <a href="/api/download-form.php" target="_blank" style={{
+            display:'inline-flex',alignItems:'center',gap:6,
+            padding:'9px 18px',background:'var(--navy)',color:'#fff',
+            borderRadius:8,fontWeight:700,fontSize:'0.82rem',
+            textDecoration:'none',whiteSpace:'nowrap',flexShrink:0,
+          }}>
+            <Download size={14}/> Download Form
+          </a>
+        </div>
       </div>
 
       {/* Form card */}
@@ -195,9 +219,9 @@ function JobSeekerForm() {
             <div style={{background:'var(--pale)',borderRadius:12,padding:20,border:'1px solid var(--border)'}}>
               <p style={{fontWeight:700,color:'var(--navy)',marginBottom:14,fontSize:'0.92rem'}}>Your Biodata is ready — download, print, or share:</p>
               <div style={{display:'flex',gap:10,flexWrap:'wrap',marginBottom:12}}>
-                <button onClick={downloadPDF} disabled={pdfLoading}
-                  style={{display:'flex',alignItems:'center',gap:8,padding:'10px 20px',background:'var(--navy)',color:'#fff',border:'none',borderRadius:8,fontWeight:600,fontSize:'0.88rem',cursor:'pointer'}}>
-                  <Download size={15}/>{pdfLoading ? 'Generating…' : 'Download PDF'}
+                <button onClick={downloadPDF} disabled={downloading}
+                  style={{display:'flex',alignItems:'center',gap:8,padding:'10px 20px',background:'var(--navy)',color:'#fff',border:'none',borderRadius:8,fontWeight:600,fontSize:'0.88rem',cursor:downloading?'not-allowed':'pointer',opacity:downloading?0.7:1}}>
+                  <Download size={15}/>{downloading ? 'Generating…' : 'Download PDF'}
                 </button>
                 <button onClick={printBiodata}
                   style={{display:'flex',alignItems:'center',gap:8,padding:'10px 20px',background:'var(--white)',color:'var(--navy)',border:'1.5px solid var(--border)',borderRadius:8,fontWeight:600,fontSize:'0.88rem',cursor:'pointer'}}>
@@ -224,9 +248,9 @@ function JobSeekerForm() {
                     <BiodataTemplate data={submittedData}/>
                   </div>
                   <div style={{display:'flex',gap:10,justifyContent:'center',marginTop:16}}>
-                    <button onClick={downloadPDF} disabled={pdfLoading}
+                    <button onClick={downloadPDF} disabled={false}
                       style={{display:'flex',alignItems:'center',gap:8,padding:'11px 22px',background:'var(--navy)',color:'#fff',border:'none',borderRadius:8,fontWeight:600,cursor:'pointer'}}>
-                      <Download size={15}/>{pdfLoading ? 'Generating…' : 'Download PDF'}
+                      <Download size={15}/>Download PDF
                     </button>
                     <button onClick={printBiodata}
                       style={{display:'flex',alignItems:'center',gap:8,padding:'11px 22px',background:'var(--white)',color:'var(--navy)',border:'1.5px solid var(--border)',borderRadius:8,fontWeight:600,cursor:'pointer'}}>
@@ -244,7 +268,7 @@ function JobSeekerForm() {
             <SectionHead>Personal Information</SectionHead>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:14}}>
               <Field label="Full Name" required><Input type="text" name="full_name" required placeholder="As on passport"/></Field>
-              <Field label="Date of Birth" required><Input type="date" name="dob" required/></Field>
+              <Field label="Date of Birth" required><Input type="text" name="dob" required placeholder="DD/MM/YYYY" maxLength={10} onInput={e=>{let v=e.target.value.replace(/\D/g,'');if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);if(v.length>5)v=v.slice(0,5)+'/'+v.slice(5);e.target.value=v.slice(0,10)}}/></Field>
             </div>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:14}}>
               <Field label="Nationality" required><Input type="text" name="nationality" required placeholder="e.g. Nepali"/></Field>
@@ -285,7 +309,7 @@ function JobSeekerForm() {
             <SectionHead>Passport Details</SectionHead>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:14}}>
               <Field label="Passport Number"><Input type="text" name="passport_no" placeholder="e.g. Pa1234567"/></Field>
-              <Field label="Passport Validity"><Input type="date" name="passport_validity"/></Field>
+              <Field label="Passport Validity"><Input type="text" name="passport_validity" placeholder="DD/MM/YYYY" maxLength={10} onInput={e=>{let v=e.target.value.replace(/\D/g,'');if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);if(v.length>5)v=v.slice(0,5)+'/'+v.slice(5);e.target.value=v.slice(0,10)}}/></Field>
               <Field label="Passport Status" required>
                 <Sel name="passport_status" required>
                   <option value="">Select...</option>

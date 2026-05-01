@@ -109,7 +109,7 @@ export default function EmployersPage() {
                   </div>
                   <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:14}}>
                     <div className="form-group"><label>Offered Salary</label><input type="text" name="salary" placeholder="e.g. SAR 1,200/month"/></div>
-                    <div className="form-group"><label>Expected Deployment Date</label><input type="date" name="deployment_date"/></div>
+                    <div className="form-group"><label>Expected Deployment Date</label><input type="text" name="deployment_date" placeholder="DD/MM/YYYY" maxLength={10} onInput={e=>{let v=e.target.value.replace(/\D/g,'');if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);if(v.length>5)v=v.slice(0,5)+'/'+v.slice(5);e.target.value=v.slice(0,10)}}/></div>
                   </div>
                   <div className="form-group"><label>Benefits Provided</label><input type="text" name="benefits" placeholder="e.g. Free accommodation, food, transport"/></div>
                   <div className="form-group"><label>Specific Requirements / Notes</label><textarea name="requirements" placeholder="Experience needed, age range, certifications, special skills..."/></div>
