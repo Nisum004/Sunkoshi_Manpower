@@ -102,9 +102,9 @@ export default function Hero() {
 
           {/* CTAs */}
           <div style={{ display:'flex', gap:14, flexWrap:'wrap', animation:'fadeUp 0.7s both 0.72s' }}>
-            <Link href="/resources/job-seekers" className="btn btn-accent">
-              <i className="fas fa-paper-plane"/>Send Your CV
-            </Link>
+            <a href="mailto:info@sunkoshimanpower.com" className="btn btn-accent">
+              <i className="fas fa-envelope"/>Email Us
+            </a>
             <Link href="/jobs" className="btn btn-outline-white">
               <i className="fas fa-briefcase"/>View Jobs
             </Link>

@@ -21,6 +21,7 @@ $newEmp    = $pdo->query("SELECT COUNT(*) FROM employer_inquiries WHERE read_sta
     <a href="employers.php" class="nav-link <?= $currentPage==='employers'?'active':'' ?>"><i class="fas fa-building"></i> Employers <?php if($newEmp>0) echo "<span class='badge-count'>$newEmp</span>"; ?></a>
   </nav>
   <div class="sidebar-footer">
+    <a href="https://sunkoshimanpower.com:2096" target="_blank" class="nav-link" style="color:rgba(255,255,255,0.5)!important"><i class="fas fa-envelope-open-text"></i> Webmail</a>
     <a href="logout.php" class="nav-link" style="color:rgba(255,255,255,0.5)!important"><i class="fas fa-sign-out-alt"></i> Logout</a>
   </div>
 </div>
