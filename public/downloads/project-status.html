@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunkoshi Manpower — Website Project Status</title>
+<style>
+  @page { size: A4; margin: 0; }
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', Arial, sans-serif;
+    background: #f0f2f8;
+    color: #1a1a2e;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .no-print { display: none !important; }
+    .page { margin: 0; box-shadow: none; border-radius: 0; }
+    .page-break { page-break-before: always; }
+  }
+
+  /* ── PRINT BAR ── */
+  .no-print {
+    background: #2B3675;
+    color: #fff;
+    padding: 12px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .no-print button {
+    background: #C8A84B;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  /* ── PAGE ── */
+  .page {
+    width: 210mm;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: #2B3675;
+    color: #fff;
+    padding: 36px 44px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+  .header-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .header-brand { line-height: 1.2; }
+  .header-brand .name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.01em;
+  }
+  .header-brand .sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .header-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header-title span { color: #C8A84B; }
+  .header-meta {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header-meta b { color: rgba(255,255,255,0.9); }
+
+  /* ── KEY NUMBERS BAR ── */
+  .numbers-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #1e2a5e;
+  }
+  .num-cell {
+    padding: 16px 20px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .num-cell:last-child { border-right: none; }
+  .num-val {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: #C8A84B;
+    line-height: 1;
+  }
+  .num-lbl {
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  /* ── BODY ── */
+  .body { padding: 32px 44px 40px; }
+
+  /* ── SECTION HEADING ── */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 28px 0 14px;
+  }
+  .section-head:first-child { margin-top: 0; }
+  .section-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-green  { background: #22c55e; }
+  .dot-orange { background: #f59e0b; }
+  .dot-blue   { background: #3b82f6; }
+  .section-head h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #2B3675;
+  }
+  .section-head .line {
+    flex: 1;
+    height: 1px;
+    background: #e5e7eb;
+  }
+
+  /* ── TABLE ── */
+  table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 8px; }
+  thead tr { background: #2B3675; color: #fff; }
+  thead th { padding: 9px 12px; text-align: left; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; }
+  tbody tr:nth-child(even) { background: #f8f9ff; }
+  tbody tr:hover { background: #eef1fb; }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid #e5e7eb; color: #334155; vertical-align: top; }
+  .td-done { color: #16a34a; font-weight: 700; text-align: center; }
+  .td-pending { color: #d97706; font-weight: 700; text-align: center; }
+  .td-name { font-weight: 600; color: #1e293b; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-done    { background: #dcfce7; color: #166534; }
+  .badge-pending { background: #fef3c7; color: #92400e; }
+  .badge-future  { background: #dbeafe; color: #1e40af; }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 8px; }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: #475569; }
+  .check-icon { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 9px; font-weight: 900; }
+  .check-done    { background: #dcfce7; color: #16a34a; }
+  .check-pending { background: #fef3c7; color: #d97706; }
+
+  /* ── PHASE TIMELINE ── */
+  .phases { display: flex; flex-direction: column; gap: 0; }
+  .phase {
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+  .phase:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 32px;
+    bottom: 0;
+    width: 2px;
+    background: #e5e7eb;
+  }
+  .phase-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .phase-done    { background: #2B3675; color: #fff; }
+  .phase-current { background: #C8A84B; color: #1a1a2e; }
+  .phase-future  { background: #e5e7eb; color: #94a3b8; }
+  .phase-body { padding: 6px 0 20px; }
+  .phase-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; color: #1e293b; margin-bottom: 3px; }
+  .phase-desc { font-size: 11.5px; color: #64748b; line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #f8f9ff;
+    border-top: 1px solid #e5e7eb;
+    padding: 14px 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10.5px;
+    color: #94a3b8;
+  }
+  .footer b { color: #2B3675; }
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  <span>Sunkoshi Manpower — Project Status Report &nbsp;·&nbsp; May 2026</span>
+  <button onclick="window.print()">&#128438; Print / Save as PDF</button>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <img class="header-logo" src="/images/logo.png" alt="Logo"
+        onerror="this.style.display='none'">
+      <div class="header-brand">
+        <div class="name">Sunkoshi Manpower Service (P.) Ltd.</div>
+        <div class="sub">License No. 69/052/53 · Maitidevi, Kathmandu</div>
+      </div>
+    </div>
+    <div class="header-title">Website <span>Project Status</span></div>
+    <div class="header-meta">
+      <div><b>Domain:</b> sunkoshimanpower.com</div>
+      <div><b>Report Date:</b> May 4, 2026</div>
+      <div><b>Tech Stack:</b> Next.js 14 · PHP · MySQL</div>
+      <div><b>Hosting:</b> AGM Hosting (cPanel)</div>
+    </div>
+  </div>
+
+  <!-- KEY NUMBERS -->
+  <div class="numbers-bar">
+    <div class="num-cell"><div class="num-val">11</div><div class="num-lbl">Public Pages</div></div>
+    <div class="num-cell"><div class="num-val">7</div><div class="num-lbl">Admin Sections</div></div>
+    <div class="num-cell"><div class="num-val">1</div><div class="num-lbl">MySQL Database</div></div>
+    <div class="num-cell"><div class="num-val">Live</div><div class="num-lbl">Status</div></div>
+  </div>
+
+  <div class="body">
+
+    <!-- COMPLETED PAGES -->
+    <div class="section-head">
+      <div class="section-dot dot-green"></div>
+      <h2>Completed — Public Pages</h2>
+      <div class="line"></div>
+      <span class="badge badge-done">11 Pages</span>
+    </div>
+
+    <table>
+      <thead><tr><th style="width:28%">Page</th><th style="width:10%">Route</th><th>Features</th></tr></thead>
+      <tbody>
+        <tr><td class="td-name">Home</td><td><code>/</code></td><td>Hero slideshow (8 photos, Ken Burns effect), stats counter, services, countries, job categories, quick apply</td></tr>
+        <tr><td class="td-name">About</td><td><code>/about</code></td><td>Company story, MD message, 30-year history, highlights grid</td></tr>
+        <tr><td class="td-name">Destinations</td><td><code>/destinations</code></td><td>Deployment countries with flag icons</td></tr>
+        <tr><td class="td-name">Jobs</td><td><code>/jobs</code></td><td>Live listings from database, category & country filters</td></tr>
+        <tr><td class="td-name">Job Detail</td><td><code>/jobs/[id]</code></td><td>Full job info, requirements, direct apply button</td></tr>
+        <tr><td class="td-name">For Job Seekers</td><td><code>/resources/job-seekers</code></td><td>Full registration form → database, auto-generates biodata PDF download</td></tr>
+        <tr><td class="td-name">For Employers</td><td><code>/resources/employers</code></td><td>Employer inquiry form → database</td></tr>
+        <tr><td class="td-name">FAQ</td><td><code>/faq</code></td><td>Common questions about working abroad</td></tr>
+        <tr><td class="td-name">Photo Gallery</td><td><code>/gallery</code></td><td>Company photos — sendoff, training, milestones</td></tr>
+        <tr><td class="td-name">Ads &amp; News</td><td><code>/ads</code></td><td>All content with category filter (Ads / News / Jobs / Announcements / Notices)</td></tr>
+        <tr><td class="td-name">Contact</td><td><code>/contact</code></td><td>Contact form, office map, all office locations</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ADMIN PANEL -->
+    <div class="section-head">
+      <div class="section-dot dot-green"></div>
+      <h2>Completed — Admin Panel</h2>
+      <div class="line"></div>
+      <span class="badge badge-done">7 Sections</span>
+    </div>
+
+    <table>
+      <thead><tr><th style="width:28%">Section</th><th>Capabilities</th><th style="width:12%">Status</th></tr></thead>
+      <tbody>
+        <tr><td class="td-name">Dashboard</td><td>Live counts — new applications, unread messages, open jobs</td><td class="td-done">✓ Done</td></tr>
+        <tr><td class="td-name">Applications</td><td>View all submissions, filter by status, update status (New → Reviewed → Shortlisted → Rejected)</td><td class="td-done">✓ Done</td></tr>
+        <tr><td class="td-name">Jobs</td><td>Add / edit / delete vacancies, open/close toggles, set deadline</td><td class="td-done">✓ Done</td></tr>
+        <tr><td class="td-name">News</td><td>Add / edit / delete articles with image, category, tags</td><td class="td-done">✓ Done</td></tr>
+        <tr><td class="td-name">Ads</td><td>Upload ad image, set title and external link, display on /ads page</td><td class="td-done">✓ Done</td></tr>
+        <tr><td class="td-name">Contacts</td><td>View contact form submissions, mark read/unread</td><td class="td-done">✓ Done</td></tr>
+        <tr><td class="td-name">Employer Inquiries</td><td>View employer requirement submissions, mark read/unread</td><td class="td-done">✓ Done</td></tr>
+      </tbody>
+    </table>
+
+    <!-- FEATURES -->
+    <div class="section-head">
+      <div class="section-dot dot-green"></div>
+      <h2>Completed — Features &amp; Design</h2>
+      <div class="line"></div>
+    </div>
+
+    <ul class="checklist">
+      <li><div class="check-icon check-done">✓</div><span><b>PDF Biodata Generation</b> — After registration, generates a professional A4 biodata PDF (direct download, no print dialog)</span></li>
+      <li><div class="check-icon check-done">✓</div><span><b>Downloadable Blank Form</b> — Printable application form available at /downloads/application-form.html</span></li>
+      <li><div class="check-icon check-done">✓</div><span><b>Responsive Design</b> — Mobile, tablet and desktop optimized. Hamburger menu on mobile.</span></li>
+      <li><div class="check-icon check-done">✓</div><span><b>Animated Hero Slideshow</b> — 8 destination country photos with Ken Burns zoom and cross-fade transitions</span></li>
+      <li><div class="check-icon check-done">✓</div><span><b>Performance</b> — Hero images compressed from ~48 MB to 5.5 MB (10× faster first load)</span></li>
+      <li><div class="check-icon check-done">✓</div><span><b>Webmail Quick Link</b> — Admin sidebar links directly to sunkoshimanpower.com:2096 webmail</span></li>
+      <li><div class="check-icon check-done">✓</div><span><b>Brand Typography</b> — Montserrat 900 for "Sunkoshi" brand name in navbar</span></li>
+      <li><div class="check-icon check-done">✓</div><span><b>Animated Stats Counter</b> — Numbers count up when scrolled into view</span></li>
+      <li><div class="check-icon check-done">✓</div><span><b>SSL Certificate</b> — Active on sunkoshimanpower.com (HTTPS)</span></li>
+    </ul>
+
+    <!-- PENDING -->
+    <div class="section-head" style="margin-top:32px">
+      <div class="section-dot dot-orange"></div>
+      <h2>Pending — Content (Needs Team Input)</h2>
+      <div class="line"></div>
+      <span class="badge badge-pending">Action Required</span>
+    </div>
+
+    <ul class="checklist">
+      <li><div class="check-icon check-pending">!</div><span><b>Real Gallery Photos</b> — Upload actual sendoff events, training sessions, and office photos via Admin → News</span></li>
+      <li><div class="check-icon check-pending">!</div><span><b>News &amp; Announcements</b> — Publish real company news, hiring notices via Admin → News</span></li>
+      <li><div class="check-icon check-pending">!</div><span><b>Ads</b> — Upload recruitment advertisements via Admin → Ads</span></li>
+      <li><div class="check-icon check-pending">!</div><span><b>Worker Testimonials</b> — Names, photos and quotes from successfully deployed workers</span></li>
+      <li><div class="check-icon check-pending">!</div><span><b>Facebook Page Link</b> — Add official Facebook URL to footer social icons</span></li>
+      <li><div class="check-icon check-pending">!</div><span><b>Google Search Console</b> — Submit sitemap at sunkoshimanpower.com/sitemap.xml to appear in Google search results</span></li>
+    </ul>
+
+    <!-- PHASE ROADMAP -->
+    <div class="section-head" style="margin-top:32px">
+      <div class="section-dot dot-blue"></div>
+      <h2>Future Roadmap</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-num phase-done">1</div>
+        <div class="phase-body">
+          <div class="phase-title">Phase 1 — Static Website &nbsp;<span class="badge badge-done">Complete</span></div>
+          <div class="phase-desc">All public pages, admin panel, database, forms, PDF generation. Live at sunkoshimanpower.com.</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num phase-future">2</div>
+        <div class="phase-body">
+          <div class="phase-title">Phase 2 — Applicant Portal &nbsp;<span class="badge badge-future">Planned</span></div>
+          <div class="phase-desc">Phone/OTP login for applicants. Check application status online. View and download biodata from a personal dashboard.</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num phase-future">3</div>
+        <div class="phase-body">
+          <div class="phase-title">Phase 3 — WhatsApp Notifications &nbsp;<span class="badge badge-future">Planned</span></div>
+          <div class="phase-desc">Auto-alert admin via WhatsApp when a new application or employer inquiry arrives. No need to check email.</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num phase-future">4</div>
+        <div class="phase-body">
+          <div class="phase-title">Phase 4 — Employer Portal &nbsp;<span class="badge badge-future">Planned</span></div>
+          <div class="phase-desc">Employers log in, post requirements, and browse matched candidate profiles directly on the website.</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-num phase-future">5</div>
+        <div class="phase-body">
+          <div class="phase-title">Phase 5 — Analytics &amp; Advanced Features &nbsp;<span class="badge badge-future">Planned</span></div>
+          <div class="phase-desc">Traffic analytics dashboard, video interview scheduling, advanced search, migration to VPS for better performance.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span><b>Sunkoshi Manpower Service (P.) Ltd.</b> · Maitidevi, Kathmandu · +977-1-4522108</span>
+    <span>Report generated May 4, 2026 · sunkoshimanpower.com</span>
+  </div>
+
+</div>
+
+</body>
+</html>

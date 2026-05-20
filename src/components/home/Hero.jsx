@@ -4,14 +4,14 @@ import Link from 'next/link'
 import { company } from '@/data/company'
 
 const SLIDES = [
-  { src: '/images/countries/dubai.jpg'        },
-  { src: '/images/countries/saudi-arabia.jpg' },
-  { src: '/images/countries/malaysia.jpg'     },
-  { src: '/images/countries/japan.jpg'        },
-  { src: '/images/countries/qatar.jpg'        },
-  { src: '/images/countries/korea.jpg'        },
-  { src: '/images/countries/dubai-2.jpg'      },
-  { src: '/images/countries/japan-2.jpg'      },
+  { src: '/images/countries/dubai.jpg',        alt: 'Dubai skyline — overseas jobs in UAE' },
+  { src: '/images/countries/saudi-arabia.jpg', alt: 'Saudi Arabia — overseas jobs for Nepali workers' },
+  { src: '/images/countries/malaysia.jpg',     alt: 'Malaysia — factory and construction jobs' },
+  { src: '/images/countries/japan.jpg',        alt: 'Japan — technical trainee program jobs' },
+  { src: '/images/countries/qatar.jpg',        alt: 'Qatar — construction and skilled jobs' },
+  { src: '/images/countries/korea.jpg',          alt: 'South Korea — overseas jobs from Nepal' },
+  { src: '/images/countries/dubai-2.jpg',      alt: 'Dubai city — work opportunities in UAE' },
+  { src: '/images/countries/japan-2.jpg',      alt: 'Japan workplace — technical trainee jobs' },
 ]
 
 export default function Hero() {
@@ -39,7 +39,7 @@ export default function Hero() {
           opacity: i === current ? 1 : 0,
           transition:'opacity 1.8s ease-in-out',
         }}>
-          <img src={slide.src} alt={slide.country} style={{
+          <img src={slide.src} alt={slide.alt} style={{
             width:'100%', height:'100%', objectFit:'cover', display:'block',
             animation:'kenBurns 18s ease-in-out infinite',
             animationDelay:`${i * -2.25}s`,
@@ -70,7 +70,7 @@ export default function Hero() {
         <div style={{ maxWidth:600 }}>
 
           {/* Badge */}
-          <div style={{
+          {/* <div style={{
             display:'inline-flex', alignItems:'center', gap:8,
             background:'rgba(255,255,255,0.1)', border:'1px solid rgba(255,255,255,0.2)',
             borderRadius:100, padding:'6px 16px', marginBottom:24,
@@ -79,7 +79,7 @@ export default function Hero() {
           }}>
             <span style={{ width:7, height:7, background:'#4ade80', borderRadius:'50%', animation:'pulse 2s infinite', display:'block' }}/>
             Nepal's Trusted Manpower Recruitment Agency
-          </div>
+          </div> */}
 
           {/* Headline */}
           <h1 style={{
@@ -105,8 +105,8 @@ export default function Hero() {
             <a href="mailto:info@sunkoshimanpower.com" className="btn btn-accent">
               <i className="fas fa-envelope"/>Email Us
             </a>
-            <Link href="/jobs" className="btn btn-outline-white">
-              <i className="fas fa-briefcase"/>View Jobs
+            <Link href="/resources/job-seekers" className="btn btn-outline-white">
+              <i className="fas fa-user-check"/>Apply Now
             </Link>
           </div>
 

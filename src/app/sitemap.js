@@ -15,6 +15,7 @@ export default function sitemap() {
     { url: `${BASE}/contact`,                 lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/resources/employers`,     lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/resources/job-seekers`,   lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/ads`,                     lastModified: new Date(), changeFrequency: 'weekly',  priority: 0.8 },
     ...destinations.map(d => ({
       url: `${BASE}/destinations/${d.slug}`,
       lastModified: new Date(),

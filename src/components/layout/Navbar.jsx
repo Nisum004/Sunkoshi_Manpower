@@ -71,7 +71,7 @@ export default function Navbar() {
               <div style={{fontFamily:"'Montserrat', sans-serif", fontSize: scrolled ? '1.55rem' : '2.1rem', fontWeight:600, color:light?'var(--white)':'var(--navy)', transition:'all 0.4s', lineHeight:1.0, letterSpacing:'0.01em'}}>
                 Sunkoshi
               </div>
-              <div style={{fontFamily:"'Montserrat', sans-serif", fontSize: scrolled ? '0.80rem' : '0.95rem', fontWeight:600, color:light?'rgba(255,255,255,0.85)':'var(--navy)', transition:'all 0.4s', lineHeight:1.2, letterSpacing:'0.04em', marginTop:3}}>
+              <div style={{fontFamily:"'Montserrat', sans-serif", fontSize: scrolled ? '0.80rem' : '0.87rem', fontWeight:600, color:light?'rgba(255,255,255,0.85)':'var(--navy)', transition:'all 0.4s', lineHeight:1.2, letterSpacing:'0.04em', marginTop:3}}>
                 Manpower Services Pvt. Ltd.
               </div>
               <div style={{fontSize:'0.65rem', color:light?'rgba(255,255,255,0.5)':'var(--muted)', textTransform:'uppercase', letterSpacing:'0.08em', transition:'color 0.4s', marginTop:3}}>
@@ -87,7 +87,9 @@ export default function Navbar() {
                 onMouseEnter={()=>link.dropdown&&openDrop()}
                 onMouseLeave={()=>link.dropdown&&startClose()}>
                 {link.dropdown ? (<>
-                  <button style={{background:'none',border:'none',cursor:'pointer',fontFamily:'var(--ff-body)',fontSize:'1.05rem',fontWeight:600,color:light?'rgba(255,255,255,0.9)':'var(--navy)',display:'flex',alignItems:'center',gap:4,padding:'4px 0'}}>
+                  <button style={{background:'none',border:'none',cursor:'pointer',fontFamily:'var(--ff-body)',fontSize:'1.05rem',fontWeight:600,color:light?'rgba(255,255,255,0.9)':'var(--navy)',display:'flex',alignItems:'center',gap:4,padding:'4px 0',transition:'color 0.2s'}}
+                    onMouseEnter={e=>e.currentTarget.style.color='var(--accent)'}
+                    onMouseLeave={e=>e.currentTarget.style.color=light?'rgba(255,255,255,0.9)':'var(--navy)'}>
                     {link.label} <i className="fas fa-chevron-down" style={{fontSize:'0.6rem',transition:'transform 0.3s',transform:dropOpen?'rotate(180deg)':'none'}}/>
                   </button>
                   <div onMouseEnter={openDrop} onMouseLeave={startClose}
@@ -106,7 +108,18 @@ export default function Navbar() {
                     ))}
                   </div>
                 </>) : (
-                  <Link href={link.href} style={{fontSize:'1.05rem',fontWeight:600,color:light?'rgba(255,255,255,0.9)':'var(--navy)',padding:'4px 0',borderBottom:pathname===link.href?'2px solid var(--accent)':'2px solid transparent',transition:'all 0.3s',textDecoration:'none'}}>
+                  <Link href={link.href} style={{
+                    fontSize:'1.05rem', fontWeight:600,
+                    color: light?'rgba(255,255,255,0.9)':'var(--navy)',
+                    padding:'4px 0',
+                    textDecoration: pathname===link.href ? 'underline' : 'none',
+                    textDecorationColor: 'var(--accent)',
+                    textDecorationThickness: '2px',
+                    textUnderlineOffset: '6px',
+                    transition:'color 0.2s',
+                  }}
+                    onMouseEnter={e=>e.currentTarget.style.color='var(--accent)'}
+                    onMouseLeave={e=>e.currentTarget.style.color=light?'rgba(255,255,255,0.9)':'var(--navy)'}>
                     {link.label}
                   </Link>
                 )}

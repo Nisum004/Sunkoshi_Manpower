@@ -3,11 +3,39 @@ import Link from 'next/link'
 import { HighlightsGrid, MDPhoto } from '@/components/about/AboutInteractive'
 import CertificatesGallery from '@/components/about/CertificatesGallery'
 
-export const metadata = { title: 'About Us – Sunkoshi Manpower Service' }
+const BASE = 'https://www.sunkoshimanpower.com'
+
+export const metadata = {
+  title: 'About Us | Sunkoshi Manpower – 30 Years of Trusted Recruitment',
+  description: 'Sunkoshi Manpower Service (P.) Ltd. — government-licensed Nepal recruitment agency (No. 69/052/53) since 1995. 30+ years deploying skilled workers to Gulf, Malaysia and Japan.',
+  keywords: ['about sunkoshi manpower', 'nepal manpower agency history', 'licensed recruitment agency nepal', 'DoFE licensed nepal', 'sunkoshi manpower kathmandu'],
+  alternates: { canonical: `${BASE}/about` },
+  openGraph: {
+    title: 'About Sunkoshi Manpower – 30 Years of Trusted Recruitment',
+    description: 'Licensed since 1995 (No. 69/052/53). 30+ years deploying skilled Nepali workers to Gulf, Malaysia and Japan.',
+    url: `${BASE}/about`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'About Sunkoshi Manpower – Nepal',
+    description: 'Government-licensed since 1995. 30+ years, Gulf, Malaysia, Japan.',
+  },
+}
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: BASE },
+    { '@type': 'ListItem', position: 2, name: 'About Us', item: `${BASE}/about` },
+  ],
+}
 
 export default function AboutPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="page-hero">
         <div className="container">
           <div className="breadcrumb"><a href="/">Home</a><span>/</span><span>About Us</span></div>

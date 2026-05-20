@@ -32,8 +32,8 @@ function langCheck(val, level) {
   return ({ 'Excellent': 'excc', 'Good': 'good', 'Basic': 'stats' })[val] === level
 }
 
-const cell  = { padding: '5px 8px', border: '1px solid #000', fontSize: 11, color: '#000', background: '#fff', height: 28, verticalAlign: 'middle' }
-const hcell = { ...cell, fontWeight: 700, textAlign: 'center', height: 'auto', padding: '6px 4px', background: '#fff' }
+const cell  = { padding: '4px 8px', border: '1px solid #000', fontSize: 12, color: '#000', background: '#fff', height: 26, verticalAlign: 'middle' }
+const hcell = { ...cell, fontWeight: 700, textAlign: 'center', height: 'auto', padding: '5px 4px', background: '#fff' }
 
 const BiodataTemplate = forwardRef(function BiodataTemplate({ data = {} }, ref) {
 
@@ -60,8 +60,8 @@ const BiodataTemplate = forwardRef(function BiodataTemplate({ data = {} }, ref) 
     <div ref={ref} style={{
       width: 794, minHeight: 1123, background: '#fff',
       fontFamily: 'Arial, Helvetica, sans-serif',
-      padding: '32px 44px 36px', boxSizing: 'border-box',
-      color: '#000', fontSize: 12,
+      padding: '28px 44px 30px', boxSizing: 'border-box',
+      color: '#000', fontSize: 13,
     }}>
 
       {/* HEADER */}
@@ -73,14 +73,14 @@ const BiodataTemplate = forwardRef(function BiodataTemplate({ data = {} }, ref) 
           color: '#000', letterSpacing: '0.03em', textTransform: 'uppercase', lineHeight: 1.2 }}>
           Sunkoshi Manpower Service (P.) Ltd.
         </div>
-        <div style={{ fontSize: 11, color: '#000', fontStyle: 'italic', marginTop: 4 }}>
+        <div style={{ fontSize: 12, color: '#000', fontStyle: 'italic', marginTop: 4 }}>
           License No. 69/052/53 &nbsp;·&nbsp; Issued by Department of Foreign Employment, Nepal
         </div>
       </div>
 
       {/* REF + PHOTO */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
-        <div style={{ fontSize: 11 }}>
+        <div style={{ fontSize: 12 }}>
           <div style={{ marginBottom: 7 }}>
             <b>Ref. No.:</b>&nbsp;
             <span style={{ display: 'inline-block', width: 140, borderBottom: '1px solid #000' }}>&nbsp;</span>
@@ -162,7 +162,7 @@ const BiodataTemplate = forwardRef(function BiodataTemplate({ data = {} }, ref) 
               ['master',    "Master's"],
               ['others',    'Others'],
             ].map(([k, label]) => (
-              <td key={k} style={{ ...cell, textAlign: 'center', fontSize: 10.5, height: 'auto', padding: '7px 4px' }}>
+              <td key={k} style={{ ...cell, textAlign: 'center', fontSize: 11.5, height: 'auto', padding: '6px 4px' }}>
                 <Checkbox checked={edLevel === k}/> {label}
               </td>
             ))}
@@ -182,7 +182,7 @@ const BiodataTemplate = forwardRef(function BiodataTemplate({ data = {} }, ref) 
           </tr>
           <tr>
             {['Excl.','Good','Basic','Excl.','Good','Basic','Excl.','Good','Basic'].map((h, i) => (
-              <th key={i} style={{ ...hcell, fontSize: 9.5, fontWeight: 600 }}>{h}</th>
+              <th key={i} style={{ ...hcell, fontSize: 10.5, fontWeight: 600 }}>{h}</th>
             ))}
           </tr>
         </thead>
@@ -232,7 +232,7 @@ const BiodataTemplate = forwardRef(function BiodataTemplate({ data = {} }, ref) 
       </table>
 
       {/* DECLARATION */}
-      <div style={{ border: '1px solid #000', padding: '9px 12px', marginBottom: 0, fontSize: 11, lineHeight: 1.6, color: '#000' }}>
+      <div style={{ border: '1px solid #000', padding: '8px 12px', marginBottom: 0, fontSize: 12, lineHeight: 1.6, color: '#000' }}>
         I hereby declare that the above statements given are true and correct to the best of my knowledge.
       </div>
 
@@ -250,7 +250,7 @@ const BiodataTemplate = forwardRef(function BiodataTemplate({ data = {} }, ref) 
       </table>
 
       {/* FOOTER */}
-      <div style={{ marginTop: 10, textAlign: 'center', fontSize: 9, color: '#555', paddingTop: 6, borderTop: '1px solid #ccc' }}>
+      <div style={{ marginTop: 8, textAlign: 'center', fontSize: 10, color: '#555', paddingTop: 5, borderTop: '1px solid #ccc' }}>
         Sunkoshi Manpower Service (P.) Ltd. &nbsp;·&nbsp; Kathmandu, Nepal &nbsp;·&nbsp; Tel: +977-1-4522108 / 4519193 &nbsp;·&nbsp; www.sunkoshimanpower.com
       </div>
 
@@ -261,9 +261,9 @@ const BiodataTemplate = forwardRef(function BiodataTemplate({ data = {} }, ref) 
 function SectionBar({ children }) {
   return (
     <div style={{
-      textAlign: 'center', fontWeight: 900, fontSize: 12, color: '#000',
+      textAlign: 'center', fontWeight: 900, fontSize: 13, color: '#000',
       letterSpacing: '0.15em', textTransform: 'uppercase',
-      margin: '8px 0 0', padding: '4px 0',
+      margin: '7px 0 0', padding: '3px 0',
       borderTop: '1.5px solid #000', borderBottom: '1.5px solid #000',
     }}>
       {children}

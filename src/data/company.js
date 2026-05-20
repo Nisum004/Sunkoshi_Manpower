@@ -35,7 +35,7 @@ export const md = {
     'Sunkoshi is a worldwide solution provider in recruitment, human resources, and staffing solutions. We can tailor-make strategies to fulfill the demands of our clients — whether large or small.',
     'Our staffing and recruitment expertise takes the entire burden away from you. We are fully geared up and prepared to deliver the right workforce at the right time.',
   ],
-  phone: '+977-9851024840',
+  phone: '+977-9841625100',
   email: 'dhruba.sunkoshi@gmail.com',
 }
 
@@ -256,7 +256,7 @@ export const contact = {
  * Set enabled: true once you have the real IDs
  */
 export const social = {
-  whatsapp: '9779851024840',        // MD WhatsApp — replace if needed
+  whatsapp: '9779841625100',        // MD WhatsApp — replace if needed
   facebook:  '',                    // e.g. https://facebook.com/sunkoshimanpower
   instagram: '',
   youtube:   '',
